@@ -1,0 +1,98 @@
+.main {
+    margin-left: 320px;
+    padding: 15px;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: #c7cfff71;
+    color: white;
+    padding: 38px 50px;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+    position: fixed;
+}
+
+.sidebar h5,
+.sidebar li {
+    padding: 10px 20px;
+}
+
+.sidebar li:hover {
+    background-color: #7092ff3a;
+    cursor: pointer;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.205);
+}
+
+.chart-bar {
+    height: 150px;
+    background: repeating-linear-gradient( to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
+    position: relative;
+}
+
+.bar {
+    width: 20px;
+    background-color: #61c5ff;
+    position: absolute;
+    bottom: 0;
+}
+
+li {
+    margin-top: 1%;
+    height: 11%;
+    list-style-type: none;
+}
+
+li a {
+    width: 100%;
+    height: 28px;
+    text-decoration: none;
+}
+
+li a img {
+    margin-left: -8px;
+}
+
+li a p {
+    margin-left: 12px;
+}
+
+.paragraph-tous {
+    font-size: 19px;
+}
+
+.a-link-eric {
+    padding: 6px;
+    font-size: 18px;
+}
+
+.a-link-eric:hover {
+    padding: 6px;
+    font-size: 18px;
+    background-color: #61c5ff;
+}
+
+.card-eric {
+    width: 5%;
+}
+
+.voirplus-eric {
+    border: #000000 solid 2px;
+    border: 15px;
+    color: #61c5ff;
+    right: 10px;
+}
+
+li-profil-eric {
+    margin-top: 0;
+}

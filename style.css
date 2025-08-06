@@ -1,0 +1,306 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.section1 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 878px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.439), rgba(0, 0, 0, 0.73));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    z-index: 1000;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+}
+
+.section1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(36, 36, 36, 0.713), rgba(0, 0, 0, 0.942)), url("image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(9px);
+    z-index: -1;
+}
+
+div ul {
+    display: flex;
+    gap: 15%;
+}
+
+.Bienvenu-eric {
+    font-size: 90px;
+    justify-content: center;
+    display: flex;
+    margin-top: 60px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: 'Georgia', serif;
+    color: white;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    margin-left: 15px;
+    font-family: 'Harrington', cursive;
+    text-shadow: 0 0 10px blue;
+}
+
+.row.col p {
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 28px;
+    color: #ddd;
+    margin-top: 10px;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    background: linear-gradient(to right, hsla(230, 100%, 95%, 0.95), hsla(0, 0%, 100%, 0.881), hsla(228, 100%, 94%, 0.932));
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(15px);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 2px 15px rgba(237, 222, 222, 0.05);
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.navbar-eric .nav-link {
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    border-top: 3px;
+    border-bottom: 3px;
+}
+
+.navbar-eric .nav-link:hover {
+    color: #007bff;
+    border-top: #007bff solid 3px;
+    border-bottom: #007bff solid 3px;
+    transition: 0.1s ease;
+}
+
+.navbar-eric .nav-link:active {
+    color: #007bff;
+    border-top: #007bff solid 1px;
+    border-bottom: #007bff solid 1px;
+    transition: 0.1s in;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.btn.bg-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn.bg-primary:hover {
+    background-color: #0056b3;
+}
+
+.img-eric {
+    margin-left: 40px;
+}
+
+.my-icon {
+    width: 30px;
+}
+
+.fonsion {
+    display: flex;
+    margin-bottom: 15px;
+    border: solid blue 1.5px;
+    border-left: #0056b3 solid 6px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding: 0px 9px;
+}
+
+.fonsion p {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 18px;
+    font-family: 'Georgia', serif;
+}
+
+.div-fonsion {
+    padding: 38px 50px;
+    width: 28%;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgb(122, 122, 122);
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+    border-radius: 19px;
+    color: rgb(0, 0, 0);
+}
+
+.div-fonsion2 .grid {
+    width: 300px;
+    display: flex;
+    grid-template-rows: repeat(2, 2fr);
+    gap: 10px;
+}
+
+.div-fonsion2 {
+    padding: 28px 30px;
+    width: 70%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+.text-fonction {
+    display: flex;
+    justify-content: center;
+    font-family: 'Georgia', serif;
+}
+
+.section2 {
+    background: linear-gradient(40deg, #c9d9ff, #efefefea, hsl(216, 100%, 95%), #f7f7f791, #f2f7ff);
+    width: 100%;
+    padding: 80px 100px;
+    gap: 5%;
+    display: flex;
+    height: 900px;
+}
+
+.section3 {
+    background: linear-gradient(to right, #e1eaff6d, #ebefffa5, #e5efffe4);
+    width: 100%;
+    padding: 80px 100px;
+    gap: 5%;
+    height: 980px;
+}
+
+.section4 {
+    background: linear-gradient(to right, #e1eaff6d, #ebefffa5, #e5efffe4);
+    width: 100%;
+    padding: 80px 100px;
+    gap: 5%;
+    height: 1000px;
+}
+
+.background-eric {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(6px);
+}
+
+.background-contact {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.175), rgb(0, 0, 0)), url("image/contactus.jpg");
+}
+
+.image-eric {
+    width: 300px;
+}
+
+.comming-soon {
+    width: 50%;
+}
+
+h6 {
+    font-size: 20px;
+}
+
+
+/* 
+
+style sheet pour la page d'inscription  */
+
+form {
+    width: 400px;
+    display: block;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: #1b3a2f;
+    color: white;
+}
+
+.sidebar h5,
+.sidebar li {
+    padding: 10px 20px;
+}
+
+.sidebar li:hover {
+    background-color: #284d3b;
+    cursor: pointer;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-bar {
+    height: 150px;
+    background: repeating-linear-gradient( to top, #e0f7ea, #e0f7ea 10px, transparent 10px, transparent 20px);
+    position: relative;
+}
+
+.bar {
+    width: 20px;
+    background-color: #1abf76;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-eric {
+    height: 400px;
+}
+
+.link-service {
+    font-size: 19px;
+}
+
+@media (max-width: 768px) {
+    .Bienvenu-eric {
+        font-size: 60px;
+        margin-top: 60px;
+    }
+    .bg-cover {
+        height: 600px;
+        padding: 0 10px;
+    }
+    div ul {
+        gap: 8%;
+    }
+}
+
+.btn {
+    font-size: 20px;
+}
