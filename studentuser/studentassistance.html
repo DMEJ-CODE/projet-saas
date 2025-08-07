@@ -7,13 +7,16 @@
     <title>students assistance</title>
     <link rel="shortcut icon" href="/image/logo4.jpg" type="image/x-icon">
     <link rel="stylesheet" href="/dashboard.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
     <style>
         body {
             background-color: #ffffff;
         }
-        
+
         .sidebar {
             height: 100vh;
             background-color: #c7cfff71;
@@ -23,55 +26,75 @@
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            position: fixed;
         }
-        
+
+        .sidebar-eric {
+            height: 100%;
+            background-color: #c7cfff71;
+            color: white;
+            width: 200px;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+        }
+
         .sidebar h5,
         .sidebar li {
             padding: 10px 20px;
         }
-        
+
         .sidebar li:hover {
             background-color: #7092ff3a;
             cursor: pointer;
         }
-        
+
         .card {
             border: none;
             border-radius: 16px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.205);
         }
-        
+
         .chart-bar {
             height: 150px;
-            background: repeating-linear-gradient( to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
+            background: repeating-linear-gradient(to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
             position: relative;
         }
-        
+
         .bar {
             width: 20px;
             background-color: #61c5ff;
             position: absolute;
             bottom: 0;
         }
-        
+
         li {
             margin-top: 2%;
             height: 11%;
             list-style-type: none;
         }
-        
+
         li a {
             width: 100%;
             height: 28px;
             text-decoration: none;
         }
-        
+
         li a img {
             margin-left: -8px;
         }
-        
+
         li a p {
             margin-left: 12px;
+        }
+        .section1{
+            margin-left: 300px;
+        }
+        header{
+            position: fixed;
+        }
+        .sectionchat{
+            margin-top: 120px;
         }
     </style>
 </head>
@@ -84,8 +107,10 @@
                 <!-- Sidebar -->
                 <div class="col-md-2 sidebar d-flex flex-column p-3">
                     <div class="rol d-flex " style="justify-content: space-between;">
-                        <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center" style="font-family: 'Georgia', serif;">ELEVES</h2>
-                        <a href="" class=""><img src="/svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white" width="30px" alt=""></a>
+                        <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center"
+                            style="font-family: 'Georgia', serif;">ELEVES</h2>
+                        <a href="" class=""><img src="/svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white"
+                                width="30px" alt=""></a>
                     </div>
                     <hr class="border border-black border-1 justify-center mt-4" style="color: black; width: 98%; ">
 
@@ -145,18 +170,16 @@
                             <p>Asistance Inteligente</p>
                         </a>
                     </li>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; ">
-                        <a href="" class="text-black d-flex">
-                            <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                            <p>Parametre</p>
-                        </a>
-                    </li>
                     <hr class="border border-black border-1 justify-center" style="color: black; width: 98%;">
 
                     <div class=" mt-3">
-                        <a href="studentprofile.html" id="profileeleve" class="btn d-flex p-1 align-center pt-2 rounded-4" style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
-                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px" height="40px" alt="">
-                            <p class="text-black align-center d-flex fs-5 fw-bold" style="font-family: 'Georgia', serif;">Emanuen stevie</p>
+                        <a href="studentprofile.html" id="profileeleve"
+                            class="btn d-flex p-1 align-center pt-2 rounded-4"
+                            style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
+                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px"
+                                height="40px" alt="">
+                            <p class="text-black align-center d-flex fs-5 fw-bold"
+                                style="font-family: 'Georgia', serif;">Emanuen stevie</p>
                         </a>
                     </div>
 
@@ -165,26 +188,118 @@
 
         </div>
 
-        <section class="w-100 ">
+        <section class="w-100 section1 main">
             <header class="row ms-1 pt-2" style="width: 100%;">
                 <div class="col d-flex " style="justify-content: space-between;">
                     <h2>Assistance Inteligented</h2>
-                    <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25" style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
+                    <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25"
+                        style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
                     <div>
                         <a href="">
-                            <img src="/svgs/solid/circle-info.svg" width="40px" class="p-2 rounded-5" style="background-color: rgba(208, 216, 255, 0.171);" alt="">
+                            <img src="/svgs/solid/circle-info.svg" width="40px" class="p-2 rounded-5"
+                                style="background-color: rgba(208, 216, 255, 0.171);" alt="">
                         </a>
-                        <a href="" class="ms-2 me-3"><img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5" style="background-color: #bdc7ff2c;" alt=""></a>
+                        <a href="" class="ms-2 me-3"><img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5"
+                                style="background-color: #bdc7ff2c;" alt=""></a>
                     </div>
                 </div>
                 <hr class="mt-1">
-                <div class="d-flex p-2 ps-5 rounded-3" style="background-color: rgba(228, 228, 255, 0.788); margin-top: -13px; width: 99%;">
-                    <button type="" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 ms-4 border-0">Tous</button>
-                </div>
+                <div class="d-flex p-2 ps-5 rounded-3"
+                    style="background-color: rgba(228, 228, 255, 0.788); margin-top: -13px; width: 99%;">
+                  </div>
                 <hr class="mt-1">
             </header>
-            <div></div>
-            <div></div>
+            <div class="d-flex p-4 ms-3 sectionchat" style="height: 780px;">
+                <div class="sidebar-eric p-3 rounded-3">
+                    <div>
+                        <img src="" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <div class="">
+                        <h3 class="text-center text-black fw-bold">historique</h3>
+                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
+                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">pp bg uhygb dks
+                            sjd sd h hhbppppp p</p>
+                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
+                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
+                            sjd sd h hhboo o</p>
+                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
+                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
+                            sjd sd h hhboo d </p>
+                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
+                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
+                            sjd sd h hhboo o y </p>
+                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
+                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
+                            sjd sd h hhboo oo i</p>
+
+                    </div>
+                </div>
+                <div class=" p-2 rounded-3" style="width: 60%;overflow-y: auto;background-color: rgba(246, 246, 255, 0.333);">
+                    <div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="w-100 pe-5 ps-5"
+                        style=" overflow-y: auto; height: 500px; ">
+                        <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(140, 140, 255) 2px solid; width: 40%;">
+                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
+                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
+                            pppoo oo iii uuu yy </p>
+                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
+                        
+                         <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
+                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
+                            pppoo oo iii uuu yy </p>
+                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
+                        
+                         <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
+                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
+                            pppoo oo iii uuu yy </p>
+                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
+                            <p class=" d-flex bg-light p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
+                            pppoo oo iii uuu yy yhsdsdsd dsyd ys d s dy sdbybsdy d d </p>
+                        <p class=" ms-auto p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            pppoo oo iii uuu yy h d sd bydydsy d d u</p>
+                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
+                            pppoo oo iii uuu yy hdsbyhs d </p>
+                        <p class="ms-auto d-flex p-2 ps-3 pe-3"
+                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
+                            ppp ydysd sy dbsb db ds du us dbysudb soo oo iii uuu yy </p>
+                    </div>
+                    <div class="d-flex mt-5 ms-auto message-eric align-items-end gap-3 w-100">
+                        <textarea name="" id="" class="form-control border-primary rounded-4 flex-grow-1 me-2"
+                            style="height: 90px; resize: none;"
+                            placeholder="Écrire un message..."></textarea>
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <button class="btn btn-light p-2" type="button">
+                                <img src="../svgs/solid/microphone.svg" width="25px" alt="">
+                            </button>
+                            <button class="btn btn-primary p-2" type="button">
+                                <img src="../svgs/brands/telegram.svg" width="30px" alt="">
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
 
         </section>
     </div>
