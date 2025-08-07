@@ -80,7 +80,29 @@
             cursor: pointer;
         }
         
-        .card-eric {}
+        .card-eric {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+        }
+        
+        .chart-container {
+            flex: 1 1 auto;
+            position: relative;
+            height: 400px;
+            min-height: 0;
+            width: 100%;
+        }
+        
+        .card-eric canvas {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
         
         .chart-bar {
             height: 150px;
@@ -243,78 +265,78 @@
                 <div class=" row gap-5" style="margin: 3% 6%;">
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 55%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart2" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart2"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 55%; height: 550px;">
                         <h5 class="text-center mt-3">Chart Quiz</h5>
-                        <canvas id="chart3" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart3"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3">Chart Compétition</h5>
-                        <canvas id="chart4" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart4"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3">Chart Note</h5>
-                        <canvas id="chart5" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart5"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 55%; height: 550px;">
                         <h5 class="text-center mt-3">Chart presence</h5>
-                        <canvas id="chart6" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart6"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 55%; height: 550px;">
                         <h5 class="text-center mt-3">Bubble Chart</h5>
-                        <canvas id="chart7" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart7"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3">Evolution</h5>
-                        <canvas id="chart8" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart8"></canvas></div>
                     </div>
                 </div>
                 <div class=" row gap-5" style="margin: 3% 6%;">
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
 
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
                     <div class="card card-eric" style="width: 35%; height: 550px;">
                         <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <div class="chart-container"><canvas id="chart1"></canvas></div>
                     </div>
 
 
@@ -336,6 +358,10 @@
                         data: [12, 19, 3, 5],
                         backgroundColor: '#61c5ff'
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Line Chart
@@ -349,6 +375,10 @@
                         borderColor: '#7092ff',
                         fill: false
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Pie Chart
@@ -361,6 +391,10 @@
                         data: [10, 20, 30, 10, ],
                         backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#ff9f40', ]
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Doughnut Chart
@@ -373,6 +407,10 @@
                         data: [15, 25, 20],
                         backgroundColor: ['#4bc0c0', '#9966ff', '#ff9f40']
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Radar Chart
@@ -386,13 +424,16 @@
                     labels: ['Math', 'Science', 'English', 'History', 'Math', 'Science', 'English', 'History', 'Math', 'Science', 'English', 'History'],
                     datasets: [{
                         label: 'Radar Data',
-                        label: style = 'font-size: 25px; font-weight: bold;',
                         data: radarData,
                         backgroundColor: 'rgba(97,197,255,0.2)',
                         borderColor: '#61c5ff',
                         pointBackgroundColor: getRadarColors(radarData, '#61c5ff', 'red'),
                         pointBorderColor: getRadarColors(radarData, '#61c5ff', 'red')
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Polar Area Chart
@@ -405,6 +446,10 @@
                         data: [11, 16, 7, 3],
                         backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56']
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Bubble Chart
@@ -428,6 +473,10 @@
                         }],
                         backgroundColor: '#61c5ff'
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
             // Scatter Chart
@@ -451,6 +500,10 @@
                         }],
                         backgroundColor: '#7092ff'
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
             });
         </script>

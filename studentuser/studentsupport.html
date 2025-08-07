@@ -23,6 +23,11 @@
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            overflow-y: auto;
         }
         
         .sidebar h5,
@@ -38,7 +43,12 @@
         .card {
             border: none;
             border-radius: 16px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.205);
+            box-shadow: 1px 4px 50px rgba(135, 173, 255, 0.18);
+            transition: box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 32px 0 rgba(135, 173, 255, 0.28), 0 3px 12px 0 rgba(0, 0, 0, 0.10);
         }
         
         .chart-bar {
@@ -72,6 +82,74 @@
         
         li a p {
             margin-left: 12px;
+        }
+        /* Animation for support cards */
+        
+        .support-animate {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.7s cubic-bezier(.4, 0, .2, 1), transform 0.7s cubic-bezier(.4, 0, .2, 1);
+        }
+        
+        .support-animate.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-primary,
+        .btn-success,
+        .btn-info,
+        .btn-warning,
+        .btn-danger,
+        .btn-outline-primary,
+        .btn-outline-secondary {
+            filter: brightness(1.15);
+            opacity: 0.97;
+            background-color: #f8faff !important;
+            color: #222 !important;
+            border: none;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-primary:hover,
+        .btn-success:hover,
+        .btn-info:hover,
+        .btn-warning:hover,
+        .btn-danger:hover,
+        .btn-outline-primary:hover,
+        .btn-outline-secondary:hover {
+            filter: brightness(1.22);
+            opacity: 1;
+            background-color: #e3f0ff !important;
+            color: #0d6efd !important;
+            box-shadow: 0 2px 12px 0 rgba(135, 173, 255, 0.18);
+        }
+        
+        .section-support .card a.btn {
+            background-color: #c9cbff !important;
+            color: #010a17 !important;
+            transition: background 0.2s, color 0.2s;
+        }
+        
+        .section-support .card a.btn:hover {
+            background-color: #adb8ff !important;
+            color: #222 !important;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 300px;
+            right: 0;
+            z-index: 1020;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        
+        @media (max-width: 991.98px) {
+            header {
+                left: 0;
+            }
         }
     </style>
 </head>
@@ -165,7 +243,7 @@
 
         </div>
 
-        <section class="w-100 ">
+        <section class="w-100 " style="margin-left: 300px; background-color: #f3f4ff5b;">
             <header class="row ms-1 pt-2 " style="width: 100%;">
                 <div class="col d-flex " style="justify-content: space-between;">
                     <h2 class="text-black">Support</h2>
@@ -183,8 +261,117 @@
                 </div>
                 <hr class="mt-1">
             </header>
-            <div></div>
-            <div></div>
+            <div class="section-support container py-4" style="margin-top: 140px; ">
+
+                <div class="row g-4">
+                    <!-- FAQ -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/circle-question.svg" width="50" class="mb-3" alt="FAQ">
+                                <h5 class="card-title mb-2">FAQ Intelligente</h5>
+                                <p class="card-text mb-3">Trouvez rapidement des réponses aux questions fréquentes grâce à notre FAQ intelligente alimentée par IA.</p>
+                                <a href="studentassistance.html" class="btn btn-primary rounded-pill px-4">Consulter FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Documents -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/regular/file-lines.svg" width="50" class="mb-3" alt="Documents">
+                                <h5 class="card-title mb-2">Documents & Supports</h5>
+                                <p class="card-text mb-3">Accédez à tous vos documents de cours, supports pédagogiques et guides en un clic.</p>
+                                <a href="#" class="btn btn-success rounded-pill px-4">Voir Documents</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Live Chat -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/comments.svg" width="50" class="mb-3" alt="Live Chat">
+                                <h5 class="card-title mb-2">Assistance Live</h5>
+                                <p class="card-text mb-3">Discutez en direct avec un conseiller ou un enseignant pour une aide personnalisée et immédiate.</p>
+                                <a href="#" class="btn btn-info rounded-pill px-4 text-white">Démarrer Chat</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ticket rapide -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/paper-plane.svg" width="50" class="mb-3" alt="Ticket">
+                                <h5 class="card-title mb-2">Ticket rapide</h5>
+                                <p class="card-text mb-3">Signalez un problème ou faites une demande en quelques secondes. Suivi automatique de votre ticket.</p>
+                                <a href="#" class="btn btn-warning rounded-pill px-4 text-dark">Créer un ticket</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vidéo ressources -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/video.svg" width="50" class="mb-3" alt="Vidéo">
+                                <h5 class="card-title mb-2">Ressources Vidéo</h5>
+                                <p class="card-text mb-3">Regardez des tutoriels vidéo pour mieux comprendre les outils et fonctionnalités de la plateforme.</p>
+                                <a href="#" class="btn btn-danger rounded-pill px-4">Voir Vidéos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Statut du Service -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/signal.svg" width="50" class="mb-3" alt="Statut">
+                                <h5 class="card-title mb-2">Statut du Service</h5>
+                                <p class="card-text mb-3">Consultez l’état en temps réel des services de la plateforme (cours, messagerie, etc.).</p>
+                                <span class="badge bg-success mb-2">Tous les services fonctionnent</span>
+                                <a href="#" class="btn btn-outline-secondary rounded-pill px-4">Voir détails</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Suggestions & Feedback -->
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 shadow-sm border-0 support-animate">
+                            <div class="card-body d-flex flex-column align-items-center text-center">
+                                <img src="/svgs/solid/lightbulb.svg" width="50" class="mb-3" alt="Feedback">
+                                <h5 class="card-title mb-2">Suggestions & Feedback</h5>
+                                <p class="card-text mb-3">Partagez vos idées pour améliorer la plateforme ou donnez votre avis sur les services.</p>
+                                <a href="#" class="btn btn-outline-primary rounded-pill px-4">Donner mon avis</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center" role="alert">
+                            <img src="/svgs/solid/robot.svg" width="32" class="me-3" alt="AI Assistant">
+                            <div>
+                                <strong>Astuce IA :</strong> Utilisez le champ de recherche ci-dessus pour poser une question ou demander un document, notre assistant intelligent vous guidera !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Floating quick help button -->
+            <button id="quickHelpBtn" class="btn btn-primary rounded-circle shadow-lg" style="position: fixed; bottom: 32px; right: 32px; width: 60px; height: 60px; z-index: 1050; display: flex; align-items: center; justify-content: center;">
+                <img src="/svgs/solid/life-ring.svg" width="32" alt="Aide rapide">
+            </button>
+            <script>
+                // Simple animation for cards
+                document.querySelectorAll('.support-animate').forEach((el, i) => {
+                    el.style.opacity = 0;
+                    setTimeout(() => {
+                        el.style.transition = "opacity 0.7s cubic-bezier(.4,0,.2,1)";
+                        el.style.opacity = 1;
+                    }, 200 + i * 120);
+                });
+                // Floating help button action (example)
+                document.getElementById('quickHelpBtn').onclick = function() {
+                    alert('Comment pouvons-nous vous aider ? (Démo bouton rapide)');
+                };
+            </script>
     </div>
     </section>
     </div>
