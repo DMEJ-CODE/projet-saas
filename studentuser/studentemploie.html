@@ -23,6 +23,44 @@
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            overflow-y: auto;
+        }
+        .main-content {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+        }
+        /* Fixed header for main content */
+        .main-header-fixed {
+            position: fixed;
+            top: 0;
+            left: 300px;
+            right: 0;
+            z-index: 1020;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .main-content-inner {
+            padding-top: 120px; /* Adjust if header height changes */
+        }
+        @media (max-width: 991.98px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 20px 10px;
+                margin-bottom: 20px;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .main-header-fixed {
+                left: 0;
+            }
         }
         
         .sidebar h5,
@@ -89,7 +127,7 @@
                     </div>
                     <hr class="border border-black border-1 justify-center mt-4" style="color: black; width: 98%; ">
 
-                    <ul class="list-unstyled mt-5 mb-5">
+                    <ul class="list-unstyled mt-5 mb-5 ">
                         <li class="rounded-3">
                             <a href="studentnote.html" class="text-black d-flex">
                                 <img src="/svgs/solid/user-group.svg" width="20px" alt="">
@@ -164,9 +202,8 @@
             </div>
 
         </div>
-
-        <section class="w-100 ">
-            <header class="row ms-1 pt-2" style="width: 100%;">
+        <section class="w-100 main-content">
+            <header class="row ms-1 pt-2 main-header-fixed" style="width: 100%;">
                 <div class="col d-flex " style="justify-content: space-between;">
                     <h2 class="text-black">Emploie de Temp</h2>
                     <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25" style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
@@ -187,8 +224,8 @@
                 </div>
                 <hr class="mt-1">
             </header>
-            <div class="col ps-5 gap-5 ms-4 p-3">
-                <h5>Pour cette annee</h5>
+            <div class="main-content-inner col ps-5 gap-5 ms-4 p-3" style="margin-top: 7.5%;">
+                <h5 id="timetable" class="fw-bold fs-4">Pour cette annee</h5>
                 <table class="table table-striped border w-75">
                     <thead>
                         <td class="text-center border">Matiere</td>
@@ -392,10 +429,8 @@
                             <td class="text-center border">ppppppp
                                 <li>aaaaaa</li>
                             </td>
-                        </tr>
-                        </tr>
+                        </tr>  
                         <tr>
-
                             <td class="text-center border">00h00-00h00</td>
                             <td class="text-center border">ppppppp
                                 <li>aaaaaa</li>
@@ -419,17 +454,12 @@
                                 <li>aaaaaa</li>
                             </td>
                         </tr>
-                        </tr>
                     </tbody>
                 </table>
-
-                <div></div>
-                <div></div>
+                <!-- ...existing code... -->
             </div>
         </section>
     </div>
-
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
 </body>
-
 </html>
