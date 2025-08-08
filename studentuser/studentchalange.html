@@ -23,6 +23,11 @@
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            overflow-y: auto;
         }
         
         .sidebar h5,
@@ -45,6 +50,10 @@
             height: 150px;
             background: repeating-linear-gradient( to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
             position: relative;
+        }
+        
+        .section1 {
+            margin-left: 300px;
         }
         
         .bar {
@@ -72,6 +81,117 @@
         
         li a p {
             margin-left: 12px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-bottom-left-radius: 60px;
+            border-bottom-right-radius: 60px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            animation: slideDown 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        .card-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+        }
+        
+        .card-glass:hover {
+            transform: translateY(-5px);
+            margin-top: -0.5rem;
+            border: solid rgb(214, 232, 255) 3px;
+        }
+        
+        .card-glass h4 {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        
+        .card-glass p {
+            color: #555;
+        }
+        
+        .btn-modern {
+            border-radius: 30px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modern:hover {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 4rem;
+            animation: fadeIn 2s ease-in;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -133,7 +253,7 @@
                             </a>
                         </li>
                         <li class="rounded-3">
-                            <a href="studentchalange.html" class="text-black  d-flex">
+                            <a href="studentchalange.html" class="text-black  d-flex active" area-current="page">
                                 <img src="/svgs/solid/people-carry-box.svg" width="20px" alt="">
                                 <p>Challenge</p>
                             </a>
@@ -165,7 +285,7 @@
 
         </div>
 
-        <section class="w-100 ">
+        <section class="w-100 section1">
             <header class="row ms-1 pt-2" style="width: 100%;">
                 <div class="col d-flex " style="justify-content: space-between;">
                     <h2>Challenge</h2>
@@ -183,12 +303,99 @@
                 </div>
                 <hr class="mt-1">
             </header>
-            <div></div>
+            <div class="container " style="margin-top: -50px;">
+                <h2 class="section-title">Explore Competitions</h2>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🧠</div>
+                            <h4>Academic Bowl</h4>
+                            <p>Compete in math, science, and history with timed questions.</p>
+                            <a href="#" class="btn btn-primary btn-modern">Join Bowl</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🎤</div>
+                            <h4>Debate League</h4>
+                            <p>Challenge peers in structured debates across schools.</p>
+                            <a href="#" class="btn btn-success btn-modern">Enter League</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🎨</div>
+                            <h4>Art & Design</h4>
+                            <p>Submit creative work and compete for top design awards.</p>
+                            <a href="#" class="btn btn-warning btn-modern">Submit Art</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">💻</div>
+                            <h4>Coding Hackathon</h4>
+                            <p>Build apps and solve problems in team-based coding events.</p>
+                            <a href="#" class="btn btn-dark btn-modern">Hack Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-4">
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🎶</div>
+                            <h4>Music Battle</h4>
+                            <p>Perform solo or in groups and compete in school music contests.</p>
+                            <a href="#" class="btn btn-info btn-modern">Perform</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🏃‍♂️</div>
+                            <h4>Sports Tournament</h4>
+                            <p>Track, football, basketball and more—inter-school matches.</p>
+                            <a href="#" class="btn btn-danger btn-modern">View Schedule</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">📚</div>
+                            <h4>Reading Challenge</h4>
+                            <p>Compete to read and review the most books in a semester.</p>
+                            <a href="#" class="btn btn-secondary btn-modern">Start Reading</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-glass">
+                            <div class="fs-1">🧪</div>
+                            <h4>Science Fair</h4>
+                            <p>Present experiments and innovations to judges and peers.</p>
+                            <a href="#" class="btn btn-success btn-modern">Register Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div></div>
     </div>
     </section>
     </div>
-
+    <button id="quickHelpBtn" class="btn rounded-circle shadow-lg" style="position: fixed; bottom: 32px; right: 32px; width: 60px; height: 60px; z-index: 1050; display: flex; align-items: center; justify-content: center; background-color: #2b00ff80;">
+                <img src="/svgs/solid/child-reaching.svg" width="32" alt="Aide rapide">
+            </button>
+    <script>
+        // Simple animation for cards
+        document.querySelectorAll('.support-animate').forEach((el, i) => {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.style.transition = "opacity 0.7s cubic-bezier(.4,0,.2,1)";
+                el.style.opacity = 1;
+            }, 200 + i * 120);
+        });
+        // Floating help button action (example)
+        document.getElementById('quickHelpBtn').onclick = function() {
+            alert('Comment pouvons-nous vous aider ? (Démo bouton rapide)');
+        };
+    </script>
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
 </body>
 

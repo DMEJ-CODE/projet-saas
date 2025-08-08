@@ -96,6 +96,16 @@
             width: 100%;
         }
         
+        .card {
+            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
+        }
+        
+        .card:hover {
+            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
+            margin-top: -8px;
+            transition-duration: 1.5s;
+        }
+        
         .card-eric canvas {
             width: 100% !important;
             height: 100% !important;
@@ -146,6 +156,67 @@
         header {
             position: fixed;
             z-index: 1030;
+        }
+        
+        .chart-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .chart-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .chart-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .chart-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .chart-danger {
+            background-color: var(--danger-color);
+        }
+        /* Grid layout improvements */
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+        /* Larger charts */
+        
+        .chart-lg {
+            grid-column: span 2;
+            height: 500px;
+            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
+        }
+        /* KPI cards */
+        
+        .kpi-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 150px;
+        }
+        
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        
+        .kpi-change.positive {
+            color: var(--secondary-color);
+        }
+        
+        .kpi-change.negative {
+            color: var(--danger-color);
+        }
+        
+        h6 {
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -262,251 +333,401 @@
             </header>
 
             <div class=" bg-light w-100 fixed " style="margin-top:130px; overflow-y: auto;">
-                <div class=" row gap-5" style="margin: 3% 6%;">
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
+                <div class="container-fluid">
+                    <!-- KPI Cards -->
+                    <div class="row mb-4 p-5">
+                        <div class="col-xl-3 col-md-6 mb-4 ">
+                            <div class="card kpi-card h-100 rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-1 text-primary">Average Grade</h6>
+                                            <h2 class="kpi-value mb-0">84.5</h2>
+                                        </div>
+                                        <div class="chart-primary rounded-circle p-3">
+                                            <i class="fas fa-percent text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> 5.2% from last term
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card kpi-card h-100 rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-1 text-primary">Rank in Class</h6>
+                                            <h2 class="kpi-value mb-0">#3</h2>
+                                        </div>
+                                        <div class="chart-secondary rounded-circle p-3">
+                                            <i class="fas fa-trophy text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> Improved 2 places
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card kpi-card h-100 rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-1 ">Reward Points</h6>
+                                            <h2 class="kpi-value mb-0">1,850</h2>
+                                        </div>
+                                        <div class="chart-warning rounded-circle p-3">
+                                            <i class="fas fa-star text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> 320 this month
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card kpi-card h-100 rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-1  fw">Attendance</h6>
+                                            <h2 class="kpi-value mb-0">96%</h2>
+                                        </div>
+                                        <div class="chart-accent rounded-circle p-3">
+                                            <i class="fas fa-calendar-check text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="kpi-change negative">
+                                        <i class="fas fa-arrow-down"></i> 2% from last term
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card card-eric" style="width: 55%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart2"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 55%; height: 550px;">
-                        <h5 class="text-center mt-3">Chart Quiz</h5>
-                        <div class="chart-container"><canvas id="chart3"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3">Chart Compétition</h5>
-                        <div class="chart-container"><canvas id="chart4"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3">Chart Note</h5>
-                        <div class="chart-container"><canvas id="chart5"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 55%; height: 550px;">
-                        <h5 class="text-center mt-3">Chart presence</h5>
-                        <div class="chart-container"><canvas id="chart6"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 55%; height: 550px;">
-                        <h5 class="text-center mt-3">Bubble Chart</h5>
-                        <div class="chart-container"><canvas id="chart7"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3">Evolution</h5>
-                        <div class="chart-container"><canvas id="chart8"></canvas></div>
+
+                    <!-- Charts Grid -->
+                    <div class="dashboard-grid" style=" margin-top: -40px;">
+                        <!-- Main Performance Chart -->
+                        <div class="card chart-lg rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Academic Performance Trend</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="performanceTrendChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subject Comparison Radar -->
+                        <div class="card rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Subject Competency Radar</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="subjectRadarChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grade Distribution -->
+                        <div class="card rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Grade Distribution</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="gradeDistributionChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Term Comparison -->
+                        <div class="card chart-lg rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Term Comparison</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="termComparisonChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz Performance -->
+                        <div class="card rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Quiz Performance</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="quizPerformanceChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Competition Results -->
+                        <div class="card rounded-4 ">
+                            <div class="card-header ">
+                                <h6 class="m-0 fw-bold ">Competition Results</h6>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-container ">
+                                    <canvas id="competitionChart "></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class=" row gap-5" style="margin: 3% 6%;">
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-                    <div class="card card-eric" style="width: 35%; height: 550px;">
-                        <h5 class="text-center mt-3 fs-3">Evolution des competences</h5>
-                        <div class="chart-container"><canvas id="chart1"></canvas></div>
-                    </div>
-
-
-                </div>
+            </div>
 
 
         </section>
-        </div>
+    </div>
 
-        <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
-        <script>
-            // Bar Chart
-            new Chart(document.getElementById('chart1'), {
-                type: 'bar',
-                data: {
-                    labels: ['A', 'B', 'C', 'D'],
-                    datasets: [{
-                        label: 'Bar Data',
-                        data: [12, 19, 3, 5],
-                        backgroundColor: '#61c5ff'
-                    }]
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
+    <script>
+        // Bar Chart
+        new Chart(document.getElementById('performanceTrendChart'), {
+            type: 'line',
+            data: {
+                labels: ['Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6'],
+                datasets: [{
+                    label: 'Your Performance',
+                    data: [75, 78, 82, 80, 85, 84],
+                    borderColor: '#4e73df',
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: 'Class Average',
+                    data: [72, 74, 76, 75, 78, 77],
+                    borderColor: '#858796',
+                    backgroundColor: 'rgba(133, 135, 150, 0.05)',
+                    fill: true,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 60,
+                        max: 100
+                    }
                 }
-            });
-            // Line Chart
-            new Chart(document.getElementById('chart2'), {
-                type: 'line',
-                data: {
-                    labels: ['', 'seq1', 'seq2', 'seq3', 'seq4', 'seq5', 'seq6', 'seq7', 'seq8'],
-                    datasets: [{
-                        label: 'Line Data',
-                        data: [0, 3, 10, 5, 2, 20, 5, 25, 13],
-                        borderColor: '#7092ff',
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-            // Pie Chart
-            new Chart(document.getElementById('chart3'), {
-                type: 'pie',
-                data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Orange', 'Green'],
-                    datasets: [{
-                        label: 'Pie Data',
-                        data: [10, 20, 30, 10, ],
-                        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#ff9f40', ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-            // Doughnut Chart
-            new Chart(document.getElementById('chart4'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        label: 'Doughnut Data',
-                        data: [15, 25, 20],
-                        backgroundColor: ['#4bc0c0', '#9966ff', '#ff9f40']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-            // Radar Chart
-            function getRadarColors(data, color, alertColor) {
-                return data.map(v => v < 10 ? alertColor : color);
             }
-            const radarData = [20, 8, 12, 15, 5, 10, 30, 15, 20, 10, 6, 15];
-            new Chart(document.getElementById('chart5'), {
-                type: 'radar',
-                data: {
-                    labels: ['Math', 'Science', 'English', 'History', 'Math', 'Science', 'English', 'History', 'Math', 'Science', 'English', 'History'],
-                    datasets: [{
-                        label: 'Radar Data',
-                        data: radarData,
-                        backgroundColor: 'rgba(97,197,255,0.2)',
-                        borderColor: '#61c5ff',
-                        pointBackgroundColor: getRadarColors(radarData, '#61c5ff', 'red'),
-                        pointBorderColor: getRadarColors(radarData, '#61c5ff', 'red')
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+        });
+
+        // Subject Radar Chart
+        new Chart(document.getElementById('subjectRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History'],
+                datasets: [{
+                    label: 'Your Competency',
+                    data: [85, 78, 82, 75, 88, 70],
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                    borderColor: '#4e73df',
+                    pointBackgroundColor: '#4e73df',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#4e73df'
+                }, {
+                    label: 'Class Average',
+                    data: [75, 72, 74, 70, 80, 65],
+                    backgroundColor: 'rgba(220, 220, 220, 0.2)',
+                    borderColor: 'rgba(220, 220, 220, 1)',
+                    pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(220, 220, 220, 1)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 50,
+                        suggestedMax: 100
+                    }
                 }
-            });
-            // Polar Area Chart
-            new Chart(document.getElementById('chart6'), {
-                type: 'polarArea',
-                data: {
-                    labels: ['A', 'B', 'C', 'D'],
-                    datasets: [{
-                        label: 'Polar Data',
-                        data: [11, 16, 7, 3],
-                        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+            }
+        });
+
+        // Grade Distribution Chart (Doughnut)
+        new Chart(document.getElementById('gradeDistributionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['A (90-100)', 'B (80-89)', 'C (70-79)', 'D (60-69)', 'F (<60)'],
+                datasets: [{
+                    data: [12, 19, 8, 3, 1],
+                    backgroundColor: [
+                        '#1cc88a',
+                        '#36b9cc',
+                        '#f6c23e',
+                        '#e74a3b',
+                        '#858796'
+                    ],
+                    hoverBackgroundColor: [
+                        '#17a673',
+                        '#2c9faf',
+                        '#dda20a',
+                        '#be2617',
+                        '#60616f'
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1) ",
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
                 }
-            });
-            // Bubble Chart
-            new Chart(document.getElementById('chart7'), {
-                type: 'bubble',
-                data: {
-                    datasets: [{
-                        label: 'Bubble Data',
-                        data: [{
-                            x: 10,
-                            y: 20,
-                            r: 15
-                        }, {
-                            x: 15,
-                            y: 10,
-                            r: 10
-                        }, {
-                            x: 25,
-                            y: 30,
-                            r: 8
-                        }],
-                        backgroundColor: '#61c5ff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+            }
+        });
+
+        // Term Comparison Chart (Bar)
+        new Chart(document.getElementById('termComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Geography'],
+                datasets: [{
+                    label: 'Current Term',
+                    backgroundColor: '#4e73df',
+                    hoverBackgroundColor: '#2e59d9',
+                    data: [85, 78, 82, 75, 88, 70, 80]
+                }, {
+                    label: 'Previous Term',
+                    backgroundColor: '#858796',
+                    hoverBackgroundColor: '#60616f',
+                    data: [80, 72, 78, 70, 85, 65, 75]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        min: 50,
+                        max: 100
+                    }
                 }
-            });
-            // Scatter Chart
-            new Chart(document.getElementById('chart8'), {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Scatter Data',
-                        data: [{
-                            x: 1,
-                            y: 2
-                        }, {
-                            x: 2,
-                            y: 3
-                        }, {
-                            x: 3,
-                            y: 7
-                        }, {
-                            x: 4,
-                            y: 4
-                        }],
-                        backgroundColor: '#7092ff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+            }
+        });
+
+        // Quiz Performance Chart (Line)
+        new Chart(document.getElementById('quizPerformanceChart'), {
+            type: 'line',
+            data: {
+                labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4', 'Quiz 5', 'Quiz 6'],
+                datasets: [{
+                    label: 'Your Scores',
+                    data: [85, 78, 90, 82, 88, 92],
+                    borderColor: '#1cc88a',
+                    backgroundColor: 'rgba(28, 200, 138, 0.05)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 70,
+                        max: 100
+                    }
                 }
-            });
-        </script>
+            }
+        });
+
+        // Competition Chart (Bar)
+        new Chart(document.getElementById('competitionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Math Olympiad', 'Science Fair', 'Debate', 'Coding', 'Art'],
+                datasets: [{
+                    label: 'Your Position',
+                    backgroundColor: [
+                        '#4e73df',
+                        '#1cc88a',
+                        '#36b9cc',
+                        '#f6c23e',
+                        '#e74a3b'
+                    ],
+                    data: [3, 1, 2, 5, 4],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        reverse: true,
+                        min: 1,
+                        max: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+
+        // Toggle sidebar on mobile from topbar
+        document.getElementById('sidebarToggleTop').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+    </script>
 </body>
+
+</html>
 
 </html>

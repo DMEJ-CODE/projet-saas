@@ -10,18 +10,255 @@
     <link rel="stylesheet" href="/ericstyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-
+         :root {
+            --bg: #f6f7fb;
+            --text: #041438;
+            --muted: #64748b;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --primary: #2563eb;
+            --primary-600: #1d4ed8;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow: 0 10px 25px rgba(2, 6, 23, 0.08);
+            --gradient: linear-gradient(120deg, #d8e4ff 0%, #c6d8ff 45%, #f5f0ff 100%);
+            --glass: rgba(255, 255, 255, 0.65);
+            --blur: blur(10px);
+        }
+        
+        [data-theme="dark"] {
+            --bg: #0b1220;
+            --text: #010414;
+            --muted: #94a3b8;
+            --card-bg: #0f172a;
+            --border: #1f2937;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            --glass: rgba(15, 23, 42, 0.6);
+            --gradient: linear-gradient(120deg, #1e293b 0%, #0ea5e9 50%, #9333ea 100%);
+        }
+        
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        
+        .hero {
+            background: var(--gradient);
+            color: #020527;
+            border-radius: 18px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -60px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(closest-side, rgba(255, 255, 255, 0.35), transparent);
+            filter: blur(8px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .avatar-xl {
+            width: 210px;
+            height: 210px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+        
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem .8rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            font-weight: 600;
+        }
+        
+        .chip i {
+            opacity: .9;
+        }
+        
+        .card-soft {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .card-glass {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: .75rem;
+            align-items: center;
+            padding: .9rem 1rem;
+            border-radius: 12px;
+            border: 1px dashed var(--border);
+        }
+        
+        .stat .trend.up {
+            color: var(--success);
+        }
+        
+        .stat .trend.down {
+            color: var(--danger);
+        }
+        
+        .badge-pill {
+            border-radius: 999px;
+            padding: .4rem .75rem;
+            font-weight: 600;
+        }
+        
+        .scroll-chips {
+            display: flex;
+            gap: .5rem;
+            overflow-x: auto;
+            padding-bottom: .5rem;
+        }
+        
+        .scroll-chips::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .scroll-chips::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        
+        [data-theme="dark"] .scroll-chips::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        
+        .list-clean .list-group-item {
+            background: transparent;
+            border: 0;
+            border-bottom: 1px dashed var(--border);
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .list-clean .list-group-item:last-child {
+            border-bottom: 0;
+        }
+        
+        .hover-lift {
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(2, 6, 23, .12);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #fff;
+        }
+        
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+        
+        .btn-white {
+            background: #fff;
+            color: #0f172a;
+            border: 0;
+        }
+        
+        .progress-thin {
+            height: 8px;
+            border-radius: 6px;
+            background: #e2e8f0;
+        }
+        
+        [data-theme="dark"] .progress-thin {
+            background: #1f2937;
+        }
+        
+        .qr {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background: conic-gradient(#111 25%, #fff 0 50%, #111 0 75%, #fff 0) center/16px 16px;
+            border: 6px solid var(--card-bg);
+            box-shadow: var(--shadow);
+        }
+        
+        #profileeleve {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1rem;
+            background: linear-gradient(135deg, rgba(135, 173, 255, 0.3), rgba(200, 225, 255, 0.5));
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        #profileeleve:hover {
+            background: linear-gradient(135deg, rgba(100, 150, 240, 0.4), rgba(170, 200, 250, 0.6));
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        
+        #profileeleve img {
+            width: 42px;
+            height: 42px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        
+        #profileeleve p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #0f172a;
+            font-family: 'Georgia', serif;
+        }
+        
+        .containerall {
+            background-color: #fbfcff77;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="d-flex">
+    <div class="d-flex containerall">
         <div class="">
             <div class="wrapper">
                 <!-- Sidebar -->
-                <div class="col-md-2 sidebar d-flex flex-column p-3">
+                <div class="col-md-2 sidebar d-flex flex-column p-3 ps-5 ms-auto">
                     <div class="rol d-flex " style="justify-content: space-between;">
                         <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center" style="font-family: 'Georgia', serif;">ELEVES</h2>
                         <a href="" class=""><img src="/svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white" width="30px" alt=""></a>
@@ -29,73 +266,68 @@
                     <hr class="border border-black border-1 justify-center mt-4" style="color: black; width: 98%; ">
 
                     <ul class="list-unstyled mt-5 mb-5">
-                        <li class="rounded-3">
-                            <a href="studentnote.html" class="text-black d-flex">
-                                <img src="/svgs/solid/user-group.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href=" studentnote.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/user-group.svg " width="20px " alt=" ">
                                 <p>Notes</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentgraphic.html" class="text-black d-flex">
-                                <img src="/svgs/solid/chart-column.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentgraphic.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/chart-column.svg " width="20px " alt=" ">
                                 <p>Graphique devolution</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentemploie.html" class="text-black d-flex">
-                                <img src="/svgs/solid/calendar-days.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentemploie.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/calendar-days.svg " width="20px " alt=" ">
                                 <p>Emploi de Temp</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentsupport.html" class="text-black  d-flex">
-                                <img src="/svgs/regular/file.svg" width="20px" height="25px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentsupport.html " class="text-black d-flex ">
+                                <img src="/svgs/regular/file.svg " width="20px " height="25px " alt=" ">
                                 <p>Support</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentoriatation.html" class="text-black  d-flex">
-                                <img src="/svgs/solid/hands-holding-child.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentoriatation.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/hands-holding-child.svg " width="20px " alt=" ">
                                 <p>Oriantation</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentcours.html" class="text-black  d-flex">
-                                <img src="/svgs/solid/book-open.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentcours.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/book-open.svg " width="20px " alt=" ">
                                 <p>Cours</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentrecompance.html" class="text-black  d-flex">
-                                <img src="/svgs/solid/trophy.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentrecompance.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/trophy.svg " width="20px " alt=" ">
                                 <p>point et recompance</p>
                             </a>
                         </li>
-                        <li class="rounded-3">
-                            <a href="studentchalange.html" class="text-black  d-flex">
-                                <img src="/svgs/solid/people-carry-box.svg" width="20px" alt="">
+                        <li class="rounded-3 ">
+                            <a href="studentchalange.html " class="text-black d-flex ">
+                                <img src="/svgs/solid/people-carry-box.svg " width="20px " alt=" ">
                                 <p>Challenge</p>
                             </a>
                         </li>
                     </ul>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; margin-top:90px ;margin-top:18%;">
-                        <a href="studentassistance.html" class="text-black d-flex">
-                            <img src="/svgs/solid/robot.svg" width="25px" alt="">
+                    <li class="rounded-3 list-unstyled " style="height: 45px; margin-top:90px ;margin-top:18%; ">
+                        <a href="studentassistance.html " class="text-black d-flex ">
+                            <img src="/svgs/solid/robot.svg " width="25px " alt=" ">
                             <p>Asistance Inteligente</p>
                         </a>
                     </li>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; ">
-                        <a href="" class="text-black d-flex">
-                            <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                            <p>Parametre</p>
-                        </a>
-                    </li>
-                    <hr class="border border-black border-1 justify-center" style="color: black; width: 98%;">
 
-                    <div class=" mt-3">
-                        <a href="studentprofile.html" id="profileeleve" class="btn d-flex p-1 align-center pt-2 rounded-4" style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
-                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px" height="40px" alt="">
-                            <p class="text-black align-center d-flex fs-5 fw-bold" style="font-family: 'Georgia', serif;">Emanuen stevie</p>
+                    <hr class="border border-black border-1 justify-center " style="color: black; width: 98%; ">
+
+                    <div class=" mt-3 ">
+                        <a href="studentprofile.html " id="profileeleve" class="btn d-flex p-1 align-center pt-2 rounded-4 " style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747); ">
+                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg " class="rounded-5 me-3 " width="40px " height="40px " alt=" ">
+                            <p class="text-black align-center d-flex fs-5 fw-bold " style="font-family: 'Georgia', serif; ">Emanuen stevie</p>
                         </a>
                     </div>
 
@@ -104,75 +336,566 @@
 
         </div>
 
-        <section class="w-100 rol p-4 ps-5 main" style="background-color: #e5ecff4a;height: 100vh;">
-            <h2 class="fw-bold" style="margin-left: 7%;">Profile</h2>
-            <div class="container w-100 gap-4 rounded-4 pt-4 p-4" style=" border:rgb(118, 177, 255) solid 3px;">
-                <div class="rounded-4 p-2 " style="height: 45%;">
-                    <div class="col d-flex">
-                        <img src="/image/OIP-2431423949.4-LTWofS-6VwuxJSAZjM6AHaEK.jpg" width="220px" style="border-radius: 50%; justify-content: center; margin-left: 4%; border: rgb(244, 250, 255) solid 8px;" height="220px" alt="">
-                        <div class="align-center p-5">
-                            <h3 class="mt-3 fw-bold text-center align-center mt-4" style="font-family:Georgia, 'Times New Roman', Times, serif ;">Emanuen stevie ttttttt rrrr
-                            </h3>
-                            <p class="text fs-5">standart</p>
+        <main class="container py-4 py-md-5 " style="margin-left: 320px; ">
+            <!-- Hero -->
+            <section class="hero mb-4 mb-md-5 ">
+                <div class="row g-4 align-items-center ">
+                    <div class="col-lg-8 d-flex align-items-center gap-3 ">
+                        <img class="avatar-xl " src="/image/contactus.jpg " alt="Student photo ">
+                        <div>
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2 ">
+                                <span class="chip "><i class="bi bi-person-badge "></i> Student</span>
+                                <span class="chip "><i class="bi bi-geo-alt "></i> Yaoundé, Cameroon</span>
+                                <span class="chip "><i class="bi bi-award "></i> GPA 3.8</span>
+                            </div>
+                            <h1 class="h3 fw-bold mb-1 fs-1 ">Jane Doe</h1>
+                            <div class="opacity-75 fs-4 ">Greenfield International Academy · Grade 11 — Science Stream</div>
+                            <div class="mt-3 ">
+                                <span class="badge text-bg-light badge-pill me-1 "><i class="bi bi-hash "></i> ID: STU-11427</span>
+                                <span class="badge text-bg-light badge-pill "><i class="bi bi-shield-check "></i> Verified</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 text-lg-end ">
+                        <div class="d-flex d-lg-inline-flex gap-2 ">
+                            <!-- Trigger button (place in your hero/actions area) -->
+                            <button class="btn btn-white hover-lift " data-bs-toggle="modal " data-bs-target="#editProfileModal ">
+                                <i class="bi bi-pencil-square me-1 "></i> Modify Profile
+                                </button>
+
+                            <!-- Edit Profile Modal -->
+                            <div class="modal fade " id="editProfileModal " tabindex="-1 " aria-hidden="true ">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable ">
+                                    <div class="modal-content border-0 " style="border-radius:16px; ">
+                                        <div class="modal-header border-0 ">
+                                            <h5 class="modal-title fw-bold "><i class="bi bi-person-gear me-2 "></i>Edit profile</h5>
+                                            <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close "></button>
+                                        </div>
+
+                                        <div class="modal-body pt-0 ">
+                                            <!-- Avatar -->
+                                            <div class="d-flex align-items-center gap-3 mb-4 ">
+                                                <img id="avatarPreview " src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=300&auto=format&fit=crop " alt="Avatar preview " class="rounded-3 " style="width:72px;height:72px;object-fit:cover; ">
+                                                <div>
+                                                    <label class="form-label mb-1 ">Profile photo</label>
+                                                    <input class="form-control form-control-sm " type="file " id="avatarInput " accept="image/* ">
+                                                    <div class="form-text ">JPG or PNG, max 2MB.</div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Form -->
+                                            <form id="profileForm " novalidate>
+                                                <div class="row g-3 ">
+                                                    <div class="col-md-6 ">
+                                                        <label for="nameInput " class="form-label ">Full name</label>
+                                                        <input type="text " class="form-control " id="nameInput " required>
+                                                        <div class="invalid-feedback ">Please enter your full name.</div>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                        <label for="emailInput " class="form-label ">Email</label>
+                                                        <input type="email " class="form-control " id="emailInput " required>
+                                                        <div class="invalid-feedback ">Enter a valid email.</div>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <label for="gradeInput " class="form-label ">Grade</label>
+                                                        <input type="number " min="1 " max="13 " class="form-control " id="gradeInput " required>
+                                                        <div class="invalid-feedback ">Grade must be 1–13.</div>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <label for="trackSelect " class="form-label ">Track</label>
+                                                        <select id="trackSelect " class="form-select " required>
+                                                                <option>Science</option>
+                                                                <option>Arts</option>
+                                                                <option>Commerce</option>
+                                                                <option>General</option>
+                                                            </select>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <label for="homeroomInput " class="form-label ">Homeroom</label>
+                                                        <input type="text " class="form-control " id="homeroomInput " placeholder="e.g., 11B " required>
+                                                        <div class="invalid-feedback ">Please enter your homeroom.</div>
+                                                    </div>
+                                                    <div class="col-md-6 ">
+                                                        <label for="locationInput " class="form-label ">Location</label>
+                                                        <input type="text " class="form-control " id="locationInput " placeholder="City, Country " required>
+                                                    </div>
+                                                    <div class="col-12 ">
+                                                        <label for="bioInput " class="form-label ">Bio</label>
+                                                        <textarea id="bioInput " class="form-control " rows="3 " placeholder="Tell us about yourself "></textarea>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="modal-footer border-0 ">
+                                            <button type="button " class="btn btn-outline-secondary " data-bs-dismiss="modal ">Cancel</button>
+                                            <button id="reviewBtn " type="button " class="btn btn-primary " disabled>
+                                            <i class="bi bi-eye me-1 "></i> Save changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Changes Modal -->
+                            <div class="modal fade " id="confirmChangesModal " tabindex="-1 " aria-hidden="true ">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content border-0 " style="border-radius:16px; ">
+                                        <div class="modal-header border-0 ">
+                                            <h5 class="modal-title fw-bold "><i class="bi bi-check2-square me-2 "></i>Confirm changes</h5>
+                                            <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close "></button>
+                                        </div>
+
+                                        <div class="modal-body pt-0 ">
+                                            <p class="text-muted small mb-3 ">Please review the updates before saving.</p>
+                                            <ul id="changesList " class="list-group ">
+                                                <!-- Filled by JS with only changed fields -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="modal-footer border-0 ">
+                                            <button type="button " class="btn btn-outline-secondary " data-bs-target="#editProfileModal " data-bs-toggle="modal ">
+          Back
+        </button>
+                                            <button id="confirmSaveBtn " type="button " class="btn btn-success ">
+          <span class="spinner-border spinner-border-sm me-2 d-none " id="saveSpinner "></span>
+          Save changes
+        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Toast (success) -->
+                            <div class="position-fixed bottom-0 end-0 p-3 " style="z-index: 1080 ">
+                                <div id="saveToast " class="toast align-items-center text-bg-success border-0 " role="status " aria-live="polite " aria-atomic="true ">
+                                    <div class="d-flex ">
+                                        <div class="toast-body ">
+                                            <i class="bi bi-check2-circle me-1 "></i> Profile updated successfully.
+                                        </div>
+                                        <button type="button " class="btn-close btn-close-white me-2 m-auto " data-bs-dismiss="toast " aria-label="Close "></button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <ul>
-                        <li class="d-flex gap-2 li-profil-eric" style="margin-bottom: -25px;">
-                            <h6>Class :</h6>
-                            <p>pppp</p>
-                        </li>
-                        <li class="d-flex gap-2" style="margin-bottom: -25px;">
-                            <h6>Annee scolaire :</h6>
-                            <p>pppppp</p>
-                        </li>
-                        <li class="d-flex gap-2" style="margin-bottom: -25px;">
-                            <h6>Ecole :</h6>
-                            <p>pppppp</p>
-                        </li>
-                        <li class="d-flex gap-2" style="margin-bottom: -25px;">
-                            <h6>Filiere :</h6>
-                            <p>ppppp</p>
-                        </li>
-                        <li class="d-flex gap-2" style="margin-bottom: -25px;">
-                            <h6>pppppp</h6>
-                            <p>ppppp</p>
-                        </li>
-                    </ul>
+            </section>
+
+            <div class="row g-4 ">
+                <!-- Left column -->
+                <div class="col-lg-4 ">
+                    <!-- Profile overview -->
+                    <div class="card-soft p-4 hover-lift ">
+                        <h5 class="fw-bold mb-3 ">Profile overview</h5>
+                        <div class="d-grid " style="row-gap:.75rem; ">
+                            <div class="d-flex justify-content-between "><span class="text-muted ">Email</span><span>jane.doe@studentportal.com</span></div>
+                            <div class="d-flex justify-content-between "><span class="text-muted ">Date of Birth</span><span>Mar 14, 2008</span></div>
+                            <div class="d-flex justify-content-between "><span class="text-muted ">Track</span><span>Science</span></div>
+                            <div class="d-flex justify-content-between "><span class="text-muted ">Homeroom</span><span>11B</span></div>
+                            <div class="d-flex justify-content-between "><span class="text-muted ">Counselor</span><span>Mr. N. Mbarga</span></div>
+                        </div>
+                        <div class="mt-3 ">
+                            <div class="text-muted small mb-1 ">Profile completion</div>
+                            <div class="progress progress-thin ">
+                                <div class="progress-bar bg-success " role="progressbar " style="width: 78% " aria-valuenow="78 " aria-valuemin="0 " aria-valuemax="100 "></div>
+                            </div>
+                            <div class="small text-muted mt-1 ">Add emergency contact to reach 100%</div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="card-soft p-4 mt-4 hover-lift ">
+                        <h6 class="fw-bold mb-3 ">Achievements</h6>
+                        <div class="scroll-chips ">
+                            <span class="badge text-bg-primary-subtle text-primary-emphasis badge-pill "><i class="bi bi-trophy me-1 "></i> Top Math</span>
+                            <span class="badge text-bg-success-subtle text-success-emphasis badge-pill "><i class="bi bi-emoji-smile me-1 "></i> Perfect Attendance</span>
+                            <span class="badge text-bg-warning-subtle text-warning-emphasis badge-pill "><i class="bi bi-cpu me-1 "></i> Coding Star</span>
+                            <span class="badge text-bg-info-subtle text-info-emphasis badge-pill "><i class="bi bi-flask me-1 "></i> Science Fair Winner</span>
+                            <span class="badge text-bg-danger-subtle text-danger-emphasis badge-pill "><i class="bi bi-lightning-charge me-1 "></i> Debate Finalist</span>
+                        </div>
+                    </div>
+
+                    <!-- ID & QR -->
+                    <div class="card-soft p-4 mt-4 d-flex align-items-center justify-content-between hover-lift ">
+                        <div>
+                            <div class="fw-bold ">Digital Student ID</div>
+                            <div class="text-muted small ">Scan in library & exams</div>
+                        </div>
+                        <div class="qr " aria-label="QR code "></div>
+                    </div>
                 </div>
-                <hr>
-                <div class="col rounded-4 p-1 " style="height: 45%;">
-                    <ul>
-                        <li class="rounded-3 list-unstyled" style="height: 20px; ">
-                            <a href="" class="text-black d-flex">
-                                <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                                <p>Info Parental</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3 list-unstyled" style="height: 20px; ">
-                            <a href="" class="text-black d-flex">
-                                <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                                <p>Parametre de confidentialitee
-                                </p>
-                            </a>
-                        </li>
-                        <li class="rounded-3 list-unstyled" style="height: 20px; ">
-                            <a href="" class="text-black d-flex">
-                                <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                                <p>Parametre General</p>
-                            </a>
-                        </li>
-                    </ul>
+
+                <!-- Middle column -->
+                <div class="col-lg-5 ">
+                    <!-- Quick stats -->
+                    <div class="card-soft p-4 hover-lift ">
+                        <h5 class="fw-bold mb-3 ">Quick stats</h5>
+                        <div class="d-grid gap-3 ">
+                            <div class="stat ">
+                                <div class="rounded-circle bg-primary-subtle text-primary p-2 "><i class="bi bi-graph-up "></i></div>
+                                <div>
+                                    <div class="fw-semibold ">GPA</div>
+                                    <div class="text-muted small ">Current cumulative</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-bold ">3.8</div>
+                                    <div class="trend up small "><i class="bi bi-caret-up-fill "></i> +0.2</div>
+                                </div>
+                            </div>
+                            <div class="stat ">
+                                <div class="rounded-circle bg-success-subtle text-success p-2 "><i class="bi bi-clipboard-check "></i></div>
+                                <div>
+                                    <div class="fw-semibold ">Attendance</div>
+                                    <div class="text-muted small ">This term</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-bold ">97%</div>
+                                    <div class="trend up small "><i class="bi bi-caret-up-fill "></i> +2%</div>
+                                </div>
+                            </div>
+                            <div class="stat ">
+                                <div class="rounded-circle bg-warning-subtle text-warning p-2 "><i class="bi bi-trophy "></i></div>
+                                <div>
+                                    <div class="fw-semibold ">Class rank</div>
+                                    <div class="text-muted small ">Out of 32</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-bold ">#3</div>
+                                    <div class="trend up small "><i class="bi bi-caret-up-fill "></i> ↑</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity timeline -->
+                    <div class="card-soft p-4 mt-4 hover-lift ">
+                        <div class="d-flex justify-content-between align-items-center mb-2 ">
+                            <h6 class="fw-bold mb-0 ">Recent activity</h6>
+                            <span class="small text-muted ">Last 7 days</span>
+                        </div>
+                        <ul class="list-group list-clean ">
+                            <li class="list-group-item d-flex align-items-start gap-3 ">
+                                <span class="text-success "><i class="bi bi-check2-circle "></i></span>
+                                <div class="flex-grow-1 ">
+                                    <div class="fw-semibold ">Submitted Physics Lab Report</div>
+                                    <div class="text-muted small ">Today · Grade pending</div>
+                                </div>
+                                <span class="badge text-bg-light ">PHY-201</span>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start gap-3 ">
+                                <span class="text-primary "><i class="bi bi-journal-text "></i></span>
+                                <div class="flex-grow-1 ">
+                                    <div class="fw-semibold ">Quiz: Calculus Derivatives</div>
+                                    <div class="text-muted small ">Yesterday · 18/20</div>
+                                </div>
+                                <span class="badge text-bg-light ">MTH-110</span>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start gap-3 ">
+                                <span class="text-warning "><i class="bi bi-calendar-event "></i></span>
+                                <div class="flex-grow-1 ">
+                                    <div class="fw-semibold ">Joined Robotics Club</div>
+                                    <div class="text-muted small ">2 days ago</div>
+                                </div>
+                                <span class="badge text-bg-light ">Club</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right column -->
+                <div class="col-lg-3 ">
+                    <!-- Upcoming schedule -->
+                    <div class="card-soft p-4 hover-lift ">
+                        <h6 class="fw-bold mb-3 ">Today’s schedule</h6>
+                        <ul class="list-group list-clean ">
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div>
+                                    <div class="fw-semibold ">Chemistry</div>
+                                    <div class="text-muted small ">Lab · Room B2</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-semibold ">10:00</div>
+                                    <div class="small text-muted ">– 11:15</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div>
+                                    <div class="fw-semibold ">English</div>
+                                    <div class="text-muted small ">Essay Workshop</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-semibold ">12:00</div>
+                                    <div class="small text-muted ">– 13:00</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between ">
+                                <div>
+                                    <div class="fw-semibold ">Robotics Club</div>
+                                    <div class="text-muted small ">Competition Prep</div>
+                                </div>
+                                <div class="text-end ">
+                                    <div class="fw-semibold ">15:30</div>
+                                    <div class="small text-muted ">– 17:00</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100 mt-3 "><i class="bi bi-calendar2-week me-1 "></i> View full calendar</button>
+                    </div>
+
+                    <!-- Smart tips -->
+                    <div class="card-glass p-4 mt-4 hover-lift ">
+                        <div class="d-flex align-items-start gap-2 ">
+                            <i class="bi bi-stars fs-5 "></i>
+                            <div>
+                                <div class="fw-semibold ">Smart tip</div>
+                                <div class="small opacity-75 ">You’re strongest in Math; schedule 2x30min Physics practice before Friday quiz.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="card-soft p-4 mt-4 hover-lift ">
+                <h6 class="fw-bold mb-3 ">App Settings</h6>
+                <div class="mb-3 ">
+                    <label for="themeSelect " class="form-label ">🌗 Theme Preference</label>
+                    <select class="form-select " id="themeSelect ">
+      <option selected>System Default</option>
+      <option>Light</option>
+      <option>Dark</option>
+    </select>
+                </div>
+                <div class="form-check form-switch mb-3 ">
+                    <input class="form-check-input" type="checkbox" id="notifyToggle" checked>
+                    <label class="form-check-label" for="notifyToggle ">🔔 Enable Notifications</label>
+                </div>
+                <div class="form-check form-switch mb-3 ">
+                    <input class="form-check-input" type="checkbox" id="focusModeToggle">
+                    <label class="form-check-label" for="focusModeToggle ">🎯 Focus Mode</label>
+                </div>
+                <button class="btn btn-primary w-25 mt-2 "><i class="bi bi-save2 me-1 "></i> Save Settings</button>
+            </div>
+
+        </main>
+        </div>
+        <script>
+            // Theme toggle with persistence
+            (function() {
+                const root = document.documentElement;
+                const key = 'theme';
+                const btn = document.getElementById('themeToggle');
+                const saved = localStorage.getItem(key);
+                if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+                btn.addEventListener('click', () => {
+                    const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    root.setAttribute('data-theme', current);
+                    localStorage.setItem(key, current);
+                });
+            })();
 
 
-    </div>
-    </div>
+            // Seed initial data (replace with Blade vars in Laravel)
+            const initialData = {
+                name: 'Jane Doe',
+                email: 'jane.doe@studentportal.com',
+                grade: 11,
+                track: 'Science',
+                homeroom: '11B',
+                location: 'Yaoundé, Cameroon',
+                bio: 'Aspiring scientist and math enthusiast.',
+                avatar: document.getElementById('avatarPreview').src
+            };
 
-    </section>
-    </div>
+            // Elements
+            const form = document.getElementById('profileForm');
+            const reviewBtn = document.getElementById('reviewBtn');
+            const confirmBtn = document.getElementById('confirmSaveBtn');
+            const changesList = document.getElementById('changesList');
+            const saveSpinner = document.getElementById('saveSpinner');
 
-    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
+            const nameInput = document.getElementById('nameInput');
+            const emailInput = document.getElementById('emailInput');
+            const gradeInput = document.getElementById('gradeInput');
+            const trackSelect = document.getElementById('trackSelect');
+            const homeroomInput = document.getElementById('homeroomInput');
+            const locationInput = document.getElementById('locationInput');
+            const bioInput = document.getElementById('bioInput');
+            const avatarInput = document.getElementById('avatarInput');
+            const avatarPreview = document.getElementById('avatarPreview');
+
+            // Prefill
+            function prefill() {
+                nameInput.value = initialData.name;
+                emailInput.value = initialData.email;
+                gradeInput.value = initialData.grade;
+                trackSelect.value = initialData.track;
+                homeroomInput.value = initialData.homeroom;
+                locationInput.value = initialData.location;
+                bioInput.value = initialData.bio;
+                avatarPreview.src = initialData.avatar;
+            }
+            prefill();
+
+            // Avatar preview
+            avatarInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                if (file.size > 2 * 1024 * 1024) {
+                    e.target.value = '';
+                    alert('Image too large. Max 2MB.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = () => avatarPreview.src = reader.result;
+                reader.readAsDataURL(file);
+
+                updateDirtyState();
+            });
+
+            // Bootstrap modals
+            const editModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+            const confirmModal = new bootstrap.Modal(document.getElementById('confirmChangesModal'));
+
+            // Validate + detect changes
+            function getCurrentData() {
+                return {
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    grade: Number(gradeInput.value),
+                    track: trackSelect.value,
+                    homeroom: homeroomInput.value.trim(),
+                    location: locationInput.value.trim(),
+                    bio: bioInput.value.trim(),
+                    avatar: avatarPreview.src
+                };
+            }
+
+            function diff(a, b) {
+                const map = {
+                    name: 'Full name',
+                    email: 'Email',
+                    grade: 'Grade',
+                    track: 'Track',
+                    homeroom: 'Homeroom',
+                    location: 'Location',
+                    bio: 'Bio',
+                    avatar: 'Profile photo'
+                };
+                const changes = [];
+                for (const key in a) {
+                    if (a[key] !== b[key]) {
+                        changes.push({
+                            key,
+                            label: map[key],
+                            from: a[key],
+                            to: b[key]
+                        });
+                    }
+                }
+                return changes;
+            }
+
+            function updateDirtyState() {
+                // quick form validation
+                form.classList.remove('was-validated');
+                const valid = form.checkValidity();
+                const changes = diff(initialData, getCurrentData());
+                reviewBtn.disabled = !(valid && changes.length > 0);
+            }
+
+            form.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('input', updateDirtyState);
+                el.addEventListener('change', updateDirtyState);
+            });
+
+            // Review changes
+            document.getElementById('reviewBtn').addEventListener('click', () => {
+                // If invalid, mark as validated
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    return;
+                }
+                const changes = diff(initialData, getCurrentData());
+                changesList.innerHTML = '';
+
+                if (changes.length === 0) {
+                    changesList.innerHTML = '<li class="list-group-item text-muted ">No changes detected.</li>';
+                } else {
+                    changes.forEach(c => {
+                        // Special handling for avatar
+                        if (c.key === 'avatar') {
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item d-flex align-items-center justify-content-between';
+                            li.innerHTML = `
+            <div>
+              <div class="fw-semibold ">${c.label}</div>
+              <div class="small text-muted ">Image will be updated</div>
+            </div>
+            <img src="${c.to} " alt="New avatar " class="rounded-2 " style="width:40px;height:40px;object-fit:cover; ">
+          `;
+                            changesList.appendChild(li);
+                            return;
+                        }
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.innerHTML = `
+          <div class="fw-semibold ">${c.label}</div>
+          <div class="small "><span class="text-muted ">From:</span> ${escapeHtml(String(c.from || '—'))}</div>
+          <div class="small "><span class="text-muted ">To:</span> ${escapeHtml(String(c.to || '—'))}</div>
+        `;
+                        changesList.appendChild(li);
+                    });
+                }
+
+                // Chain modals
+                editModal.hide();
+                confirmModal.show();
+            });
+
+            // Confirm save
+            document.getElementById('confirmSaveBtn').addEventListener('click', async() => {
+                saveSpinner.classList.remove('d-none');
+                confirmBtn.disabled = true;
+
+                // Simulate API call (replace with real fetch/axios to your Laravel route)
+                // Example for Laravel:
+                // const token = document.querySelector('meta[name="csrf-token "]').content;
+                // await fetch('/student/profile', { method: 'PUT', headers: { 'X-CSRF-TOKEN': token }, body: formData });
+
+                await new Promise(r => setTimeout(r, 900));
+
+                // Update baseline to new values
+                Object.assign(initialData, getCurrentData());
+                updateDirtyState();
+
+                // Close modal, show toast
+                confirmModal.hide();
+                const toast = new bootstrap.Toast(document.getElementById('saveToast'));
+                toast.show();
+
+                saveSpinner.classList.add('d-none');
+                confirmBtn.disabled = false;
+            });
+
+            // Utility for safe text injection
+            function escapeHtml(str) {
+                return str.replace(/[&<>" ']/g, m => ({
+                    '& ': '&amp; ',
+                    '< ': '&lt; ',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m]));
+            } // Reset form each time modal opens document.getElementById('editProfileModal').addEventListener('show.bs.modal', () => { prefill(); form.classList.remove('was-validated'); reviewBtn.disabled= true;
+        </script>
+
+        <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
 </body>
+
+</html>
 
 </html>

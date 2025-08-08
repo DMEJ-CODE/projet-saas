@@ -23,6 +23,11 @@
             backdrop-filter: blur(0px);
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            overflow-y: auto;
         }
         
         .sidebar h5,
@@ -43,7 +48,7 @@
         
         .chart-bar {
             height: 150px;
-            background: repeating-linear-gradient( to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
+            background: repeating-linear-gradient(to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
             position: relative;
         }
         
@@ -165,31 +170,393 @@
 
         </div>
 
-        <section class="w-100 ">
-            <header class="row ms-1 pt-2" style="width: 100%;">
+        <section class="w-100 " style="margin-left: 310px; width: 100%;">
+            <header class="row ms-1 pt-2" style="width: 85%; position: fixed ; background-color: #fff; height: 110px;">
                 <div class="col d-flex " style="justify-content: space-between;">
-                    <h2>point et recompance</h2>
+                    <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0;">🏆 Student Rewards Hub</h1>
                     <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25" style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
                     <div>
                         <a href="">
                             <img src="/svgs/solid/circle-info.svg" width="40px" class="p-2 rounded-5" style="background-color: rgba(208, 216, 255, 0.171);" alt="">
                         </a>
-                        <a href="" class="ms-2 me-3"><img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5" style="background-color: #bdc7ff2c;" alt=""></a>
+                        <a href="" class="ms-2 me-3">
+                            <img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5" style="background-color: #bdc7ff2c;" alt=""></a>
                     </div>
                 </div>
                 <hr class="mt-1">
                 <div class="d-flex p-2 ps-5 rounded-3" style="background-color: rgba(228, 228, 255, 0.788); margin-top: -13px; width: 99%;">
-                    <button type="" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 ms-4 border-0">Tous</button>
+                    <div style="display: flex; gap: 0.5rem; border-bottom: 1px solid #e2e8f0;">
+                        <button style="padding: 0.2rem 1rem; background: #4f46e5; color: white; border: none; border-radius: 8px 8px 0 0; font-weight: 600;">AllActivities</button>
+                        <button style="padding: 0.2rem 1rem; background: none; color: #64748b; border: none; font-weight: 500;">Academic</button>
+                        <button style="padding: 0.2rem 1rem; background: none; color: #64748b; border: none; font-weight: 500;">Sports</button>
+                        <button style="padding: 0.2rem 1rem; background: none; color: #64748b; border: none; font-weight: 500;">Arts</button>
+                        <button style="padding: 0.2rem 1rem; background: none; color: #64748b; border: none; font-weight: 500;">Leadership</button>
+                    </div>
                 </div>
                 <hr class="mt-1">
             </header>
-            <div></div>
+            <div ">
+                <div class="rewards-section " style="font-family: 'Segoe UI', sans-serif; background: #f8fafc; padding: 2rem 1rem; min-height: 100vh; margin-top: 100px; ">
+                    <div class="container " style="max-width: 1200px; margin: 0 auto; ">
+                        <!-- Header Section -->
+                        <div class="header " style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; ">
+                            <div>
+
+                                <p style="color: #64748b; margin-top: 0.5rem; ">Track achievements, earn points, and redeem rewards</p>
+                            </div>
+                            <div class="student-profile " style="display: flex; align-items: center; gap: 1rem; ">
+                                <div style="text-align: right; ">
+                                    <p style="font-weight: 600; color: #1e293b; margin: 0; ">John Doe</p>
+                                    <p style="color: #64748b; font-size: 0.875rem; margin: 0; ">Grade 10 • Class B</p>
+                                </div>
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #8b5cf6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; ">
+                                    JD</div>
+                            </div>
+                        </div>
+
+                        <!-- Points Summary -->
+                        <div class="points-summary " style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; ">
+                            <div class="total-points " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); ">
+                                <div style="display: flex; justify-content: space-between; align-items: center; ">
+                                    <h3 style="font-size: 1rem; color: #64748b; margin: 0; ">Total Points</h3>
+                                    <div style="width: 36px; height: 36px; background: #e0e7ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="18 " height="18 " viewBox="0 0 24 24 " fill="#4f46e5 " stroke="none ">
+                                            <path
+                                                d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 14.5L5 12v-4l7 4.5 7-4.5v4l-7 4.5z " />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.5rem 0; ">1,850
+                                </p>
+                                <p style="color: #64748b; font-size: 0.875rem; margin: 0; ">Top 15% in your school</p>
+                            </div>
+
+                            <div class="current-rank " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); ">
+                                <div style="display: flex; justify-content: space-between; align-items: center; ">
+                                    <h3 style="font-size: 1rem; color: #64748b; margin: 0; ">Current Rank</h3>
+                                    <div style="width: 36px; height: 36px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="18 " height="18 " viewBox="0 0 24 24 " fill="#16a34a " stroke="none ">
+                                            <path
+                                                d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84
+                10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z " />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.5rem 0; ">Silver
+                                </p>
+                                <p style="color: #64748b; font-size: 0.875rem; margin: 0; ">200 pts to Gold</p>
+                            </div>
+
+                            <div class="current-rank " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); ">
+                                <div style="display: flex; justify-content: space-between; align-items: center; ">
+                                    <h3 style="font-size: 1rem; color: #64748b; margin: 0; ">Number participated</h3>
+                                    <div style="width: 36px; height: 36px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="18 " height="18 " viewBox="0 0 24 24 " fill="#16a34a " stroke="none ">
+                                            <path
+                                                d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84
+                10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z " />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.5rem 0; ">10
+                                </p>
+                                <p style="color: #64748b; font-size: 0.875rem; margin: 0; ">200 pts to Gold</p>
+                            </div>
+
+
+                            <div class="rewards-available " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); ">
+                                <div style="display: flex; justify-content: space-between; align-items: center; ">
+                                    <h3 style="font-size: 1rem; color: #64748b; margin: 0; ">Rewards Available</h3>
+                                    <div style="width: 36px; height: 36px; background: #fef2f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="18 " height="18 " viewBox="0 0 24 24 " fill="#ef4444 " stroke="none ">
+                                            <path
+                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z " />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.5rem 0; ">8</p>
+                                <p style="color: #64748b; font-size: 0.875rem; margin: 0; ">You have 3 new offers</p>
+                            </div>
+                        </div>
+
+                        <!-- Activity Tabs -->
+                        <div class="activity-tabs " style="margin-bottom: 1.5rem; ">
+
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="recent-activities " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; ">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; ">
+                                <h2 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 0; ">Recent Activities
+                                </h2>
+                                <button style="background: #f1f5f9; color: #4f46e5; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; ">
+                                    <svg width="16 " height="16 " viewBox="0 0 24 24 " fill="none " stroke="#4f46e5 "
+                                        stroke-width="2 ">
+                                        <path d="M3 6h18M7 12h10M5 18h14 " />
+                                    </svg>
+                                    Filter
+                                </button>
+                            </div>
+
+                            <!-- Activity List -->
+                            <div class="activity-list " style="display: grid; gap: 1rem; ">
+                                <!-- Activity Item 1 -->
+                                <div class="activity-item " style="display: flex; gap: 1rem; padding: 0.5rem; border-radius: 8px; background: #f8fafc; height: 90px; ">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ec4899, #d946ef); border-radius: 8px; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="white " stroke-width="2 ">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 "></path>
+                                            <circle cx="8.5 " cy="7 " r="4 "></circle>
+                                            <line x1="20 " y1="8 " x2="20 " y2="14 "></line>
+                                            <line x1="23 " y1="11 " x2="17 " y2="11 "></line>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; ">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; ">
+                                            <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0; ">
+                                                Inter-school Debate Competition</h3>
+                                            <span style="background: #ecfdf5; color: #059669; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500; ">+150
+                                                pts</span>
+                                        </div>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 0.5rem 0; ">1st Place Winner - Regional Level</p>
+                                        <div style="display: flex; gap: 1rem; ">
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <rect x="3 " y="4 " width="18 " height="18 " rx="2 " ry="2 "></rect>
+                                                    <line x1="16 " y1="2 " x2="16 " y2="6 "></line>
+                                                    <line x1="8 " y1="2 " x2="8 " y2="6 "></line>
+                                                    <line x1="3 " y1="10 " x2="21 " y2="10 "></line>
+                                                </svg>
+                                                May 15, 2023
+                                            </span>
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <circle cx="12 " cy="12 " r="10 "></circle>
+                                                    <polyline points="12 6 12 12 16 14 "></polyline>
+                                                </svg>
+                                                Verified
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item " style="display: flex; gap: 1rem; padding: 0.5rem; border-radius: 8px; background: #f8fafc; height: 90px; ">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #ec4899, #d946ef); border-radius: 8px; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="white " stroke-width="2 ">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 "></path>
+                                            <circle cx="8.5 " cy="7 " r="4 "></circle>
+                                            <line x1="20 " y1="8 " x2="20 " y2="14 "></line>
+                                            <line x1="23 " y1="11 " x2="17 " y2="11 "></line>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; ">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; ">
+                                            <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0; ">
+                                                Inter-school Debate Competition</h3>
+                                            <span style="background: #ecfdf5; color: #059669; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500; ">+150
+                                                pts</span>
+                                        </div>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 0.5rem 0; ">1st Place Winner - Regional Level</p>
+                                        <div style="display: flex; gap: 1rem; ">
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <rect x="3 " y="4 " width="18 " height="18 " rx="2 " ry="2 "></rect>
+                                                    <line x1="16 " y1="2 " x2="16 " y2="6 "></line>
+                                                    <line x1="8 " y1="2 " x2="8 " y2="6 "></line>
+                                                    <line x1="3 " y1="10 " x2="21 " y2="10 "></line>
+                                                </svg>
+                                                May 15, 2023
+                                            </span>
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <circle cx="12 " cy="12 " r="10 "></circle>
+                                                    <polyline points="12 6 12 12 16 14 "></polyline>
+                                                </svg>
+                                                Verified
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Item 2 -->
+                                <div class="activity-item " style="display: flex; gap: 1rem; padding: 0.5rem; border-radius: 8px; background: #f8fafc; height: 90px; ">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 8px; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="white " stroke-width="2 ">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 "></path>
+                                            <circle cx="9 " cy="7 " r="4 "></circle>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87 "></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75 "></path>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; ">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; ">
+                                            <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0; ">
+                                                Math Olympiad Challenge</h3>
+                                            <span style="background: #ecfdf5; color: #059669; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500; ">+120
+                                                pts</span>
+                                        </div>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 0.5rem 0; ">Top 5 in School - Advanced Level</p>
+                                        <div style="display: flex; gap: 1rem; ">
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <rect x="3 " y="4 " width="18 " height="18 " rx="2 " ry="2 "></rect>
+                                                    <line x1="16 " y1="2 " x2="16 " y2="6 "></line>
+                                                    <line x1="8 " y1="2 " x2="8 " y2="6 "></line>
+                                                    <line x1="3 " y1="10 " x2="21 " y2="10 "></line>
+                                                </svg>
+                                                Apr 28, 2023
+                                            </span>
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <circle cx="12 " cy="12 " r="10 "></circle>
+                                                    <polyline points="12 6 12 12 16 14 "></polyline>
+                                                </svg>
+                                                Verified
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Activity Item 3 -->
+                                <div class="activity-item " style="display: flex; gap: 1rem; padding: 0.5rem; border-radius: 8px; background: #f8fafc; height: 90px; ">
+                                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 8px; display: flex; align-items: center; justify-content: center; ">
+                                        <svg width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="white " stroke-width="2 ">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16
+                16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z ">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; ">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; ">
+                                            <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0; ">
+                                                Science Fair Participation</h3>
+                                            <span style="background: #ecfdf5; color: #059669; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500; ">+80
+                                                pts</span>
+                                        </div>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 0.5rem 0; ">Innovative Project Presentation</p>
+                                        <div style="display: flex; gap: 1rem; ">
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <rect x="3 " y="4 " width="18 " height="18 " rx="2 " ry="2 "></rect>
+                                                    <line x1="16 " y1="2 " x2="16 " y2="6 "></line>
+                                                    <line x1="8 " y1="2 " x2="8 " y2="6 "></line>
+                                                    <line x1="3 " y1="10 " x2="21 " y2="10 "></line>
+                                                </svg>
+                                                Apr 10, 2023
+                                            </span>
+                                            <span style="display: flex; align-items: center; gap: 0.25rem; color: #64748b; font-size: 0.75rem; ">
+                                                <svg width="14 " height="14 " viewBox="0 0 24 24 " fill="none "
+                                                    stroke="#64748b " stroke-width="2 ">
+                                                    <circle cx="12 " cy="12 " r="10 "></circle>
+                                                    <polyline points="12 6 12 12 16 14 "></polyline>
+                                                </svg>
+                                                Verified
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button style="width: 100%; background: none; border: 1px dashed #cbd5e1; color: #4f46e5; padding: 0.75rem; border-radius: 8px; margin-top: 1rem; font-weight: 500; display: flex; align-items: center; justify-content: center;
+                gap: 0.5rem; ">
+                                <svg width="16 " height="16 " viewBox="0 0 24 24 " fill="none " stroke="#4f46e5 "
+                                    stroke-width="2 ">
+                                    <line x1="12 " y1="5 " x2="12 " y2="19 "></line>
+                                    <line x1="5 " y1="12 " x2="19 " y2="12 "></line>
+                                </svg>
+                                Load More Activities
+                            </button>
+                        </div>
+
+                        <!-- Rewards Section -->
+                        <div class="rewards-section " style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); ">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; ">
+                                <h2 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 0; ">Available Rewards
+                                </h2>
+                                <button style="background: #f1f5f9; color: #4f46e5; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; ">
+                                    <svg width="16 " height="16 " viewBox="0 0 24 24 " fill="none " stroke="#4f46e5 "
+                                        stroke-width="2 ">
+                                        <path d="M8 17l4 4 4-4M12 12v9 "></path>
+                                        <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29 "></path>
+                                    </svg>
+                                    Refresh
+                                </button>
+                            </div>
+
+                            <div class="rewards-grid " style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; ">
+                                <!-- Reward 1 -->
+                                <div class="reward-card " style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: all 0.3s; " class="hover:shadow-lg ">
+                                    <div style="height: 120px; background: linear-gradient(135deg, #a5b4fc, #818cf8); position: relative; ">
+                                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); color: #4f46e5; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; ">
+                                            500 pts</div>
+                                    </div>
+                                    <div style="padding: 1rem; ">
+                                        <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0; ">
+                                            Principal's Lunch</h3>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 1rem 0; ">Exclusive lunch with the school principal</p>
+                                        <button style="width: 100%; background: #4f46e5; color: white; border: none; padding: 0.5rem; border-radius: 6px; font-weight: 500; ">Redeem</button>
+                                    </div>
+                                </div>
+
+                                <!-- Reward 2 -->
+                                <div class="reward-card " style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: all 0.3s; " class="hover:shadow-lg ">
+                                    <div style="height: 120px; background: linear-gradient(135deg, #fbcfe8, #f9a8d4); position: relative; ">
+                                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); color: #db2777; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; ">
+                                            300 pts</div>
+                                    </div>
+                                    <div style="padding: 1rem; ">
+                                        <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0; ">
+                                            Homework Pass</h3>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 1rem 0; ">Skip one homework assignment</p>
+                                        <button style="width: 100%; background: #db2777; color: white; border: none; padding: 0.5rem; border-radius: 6px; font-weight: 500; ">Redeem</button>
+                                    </div>
+                                </div>
+
+                                <!-- Reward 3 -->
+                                <div class="reward-card " style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: all 0.3s; " class="hover:shadow-lg ">
+                                    <div style="height: 120px; background: linear-gradient(135deg, #bae6fd, #7dd3fc); position: relative; ">
+                                        <div style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; ">
+                                            200 pts</div>
+                                    </div>
+                                    <div style="padding: 1rem; ">
+                                        <h3 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0; ">
+                                            Library Privilege</h3>
+                                        <p style="color: #64748b; font-size: 0.875rem; margin: 0 0 1rem 0; ">Extended library hours for 1 week</p>
+                                        <button style="width: 100%; background: #0369a1; color: white; border: none; padding: 0.5rem; border-radius: 6px; font-weight: 500; ">Redeem</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div></div>
     </div>
     </section>
     </div>
 
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
+</body>
+
+</html>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div></div>
+</div>
+</section>
+</div>
+
+<script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
 </body>
 
 </html>

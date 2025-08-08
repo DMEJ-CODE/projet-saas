@@ -4,161 +4,163 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sales Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>SchoolSaaS Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         body {
-            background-color: #f4f6f8;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+            padding: 2rem;
         }
         
-        .sidebar {
-            height: 100vh;
-            background-color: #1b3a2f;
-            color: white;
+        .Cours-eric {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
         
-        .sidebar h5,
-        .sidebar li {
-            padding: 10px 20px;
-        }
-        
-        .sidebar li:hover {
-            background-color: #284d3b;
-            cursor: pointer;
-        }
-        
-        .card {
+        .card-eric {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             border: none;
-            border-radius: 16px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1rem;
         }
         
-        .chart-bar {
-            height: 150px;
-            background: repeating-linear-gradient( to top, #e0f7ea, #e0f7ea 10px, transparent 10px, transparent 20px);
-            position: relative;
+        .card-eric:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
         
-        .bar {
-            width: 20px;
-            background-color: #1abf76;
-            position: absolute;
-            bottom: 0;
+        .image-eric-cours {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background-color: #dee2e6;
+        }
+        
+        .card-eric h5 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-eric p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .btn-eric {
+            margin-top: 1rem;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
+    <h2 class="text-center mb-5">📘 Cameroon Curriculum Courses</h2>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="wrapper">
-                <!-- Sidebar -->
-                <div class="col-md-2 sidebar d-flex flex-column p-3">
-                    <div class="rol d-flex " style="justify-content: space-between;">
-                        <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center" style="font-family: 'Georgia', serif;">ELEVES</h2>
-                        <a href="" class=""><img src="svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white" width="30px" alt=""></a>
-                    </div>
-                    <hr class="border border-black border-1 justify-center mt-4" style="color: black; width: 98%; ">
+    <div class="Cours-eric">
+        <!-- Mathematics -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Mathematics" alt="Math" class="image-eric-cours">
+            <h5>Mathematics</h5>
+            <p>Master arithmetic, algebra, geometry, and calculus tailored to Cameroon’s curriculum.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
 
-                    <ul class="list-unstyled mt-5 mb-5">
-                        <li class="rounded-3">
-                            <a href="" class="text-black d-flex">
-                                <img src="svgs/solid/user-group.svg" width="20px" alt="">
-                                <p>Notes</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black d-flex">
-                                <img src="svgs/solid/chart-column.svg" width="20px" alt="">
-                                <p>Graphique devolution</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black d-flex">
-                                <img src="svgs/solid/calendar-days.svg" width="20px" alt="">
-                                <p>Emploi de Temp</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black  d-flex">
-                                <img src="svgs/regular/file.svg" width="20px" height="25px" alt="">
-                                <p>Support</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black  d-flex">
-                                <img src="svgs/solid/hands-holding-child.svg" width="20px" alt="">
-                                <p>Oriantation</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black  d-flex">
-                                <img src="svgs/solid/book-open.svg" width="20px" alt="">
-                                <p>Cours</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black  d-flex">
-                                <img src="svgs/solid/trophy.svg" width="20px" alt="">
-                                <p>point et recompance</p>
-                            </a>
-                        </li>
-                        <li class="rounded-3">
-                            <a href="" class="text-black  d-flex">
-                                <img src="svgs/solid/people-carry-box.svg" width="20px" alt="">
-                                <p>Challenge</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; margin-top:90px ;margin-top:18%;">
-                        <a href="" class="text-black d-flex">
-                            <img src="svgs/solid/robot.svg" width="25px" alt="">
-                            <p>Asistance Inteligente</p>
-                        </a>
-                    </li>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; ">
-                        <a href="" class="text-black d-flex">
-                            <img src="svgs/brands/whmcs.svg" width="20px" alt="">
-                            <p>Parametre</p>
-                        </a>
-                    </li>
-                    <hr class="border border-black border-1 justify-center" style="color: black; width: 98%;">
+        <!-- Physics -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Physics" alt="Physics" class="image-eric-cours">
+            <h5>Physics</h5>
+            <p>Explore motion, energy, electricity, and practical experiments aligned with national standards.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
 
-                    <div class=" mt-3">
-                        <a href="" id="profileeleve" class="btn d-flex p-1 align-center pt-2 rounded-4" style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
-                            <img src="image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px" height="40px" alt="">
-                            <p class="text-black align-center d-flex fs-5 fw-bold" style="font-family: 'Georgia', serif;">Emanuen stevie</p>
-                        </a>
-                    </div>
+        <!-- Chemistry -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Chemistry" alt="Chemistry" class="image-eric-cours">
+            <h5>Chemistry</h5>
+            <p>Understand chemical reactions, lab safety, and organic chemistry with interactive modules.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
 
-                </div>
-            </div>
+        <!-- Biology -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Biology" alt="Biology" class="image-eric-cours">
+            <h5>Biology</h5>
+            <p>Study human anatomy, plant life, genetics, and ecosystems through visual lessons.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
 
-            <!-- Main Content -->
-            <div class="col-md-10 p-4">
-                <div class="row">
-                    <!-- Revenue Card -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card p-3">
-                            <h6>Net Income</h6>
-                            <h3>$193,000</h3>
-                            <p class="text-success">+35% from last month</p>
-                        </div>
-                    </div>
+        <!-- History -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=History" alt="History" class="image-eric-cours">
+            <h5>History</h5>
+            <p>Explore Cameroon’s history, African civilizations, and global events that shaped the world.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
 
-                    <!-- Return Card -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card p-3">
-                            <h6>Total Return</h6>
-                            <h3>$32,000</h3>
-                            <p class="text-danger">-24% from last month</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Geography -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Geography" alt="Geography" class="image-eric-cours">
+            <h5>Geography</h5>
+            <p>Learn about physical landscapes, climate zones, and Cameroon’s regional geography.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- Civic Education -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Civic+Education" alt="Civic" class="image-eric-cours">
+            <h5>Civic Education</h5>
+            <p>Understand citizenship, rights, responsibilities, and national values in Cameroon.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- English Language -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=English" alt="English" class="image-eric-cours">
+            <h5>English Language</h5>
+            <p>Improve grammar, vocabulary, and writing skills with Cameroon-based English lessons.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- French Language -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Français" alt="French" class="image-eric-cours">
+            <h5>Français</h5>
+            <p>Apprenez la grammaire, la conjugaison et la rédaction selon le programme camerounais.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- Computer Science -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Computer+Science" alt="CS" class="image-eric-cours">
+            <h5>Computer Science</h5>
+            <p>Learn programming, digital literacy, and ICT skills essential for modern education.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- Agriculture -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Agriculture" alt="Agriculture" class="image-eric-cours">
+            <h5>Agriculture</h5>
+            <p>Understand farming techniques, soil science, and sustainable agriculture practices.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
+        </div>
+
+        <!-- Economics -->
+        <div class="card card-eric">
+            <img src="https://via.placeholder.com/300x180?text=Economics" alt="Economics" class="image-eric-cours">
+            <h5>Economics</h5>
+            <p>Study supply and demand, market structures, and Cameroon’s economic policies.</p>
+            <button class="btn btn-outline-primary btn-eric">Commencer</button>
         </div>
     </div>
+
+
 </body>
 
 </html>

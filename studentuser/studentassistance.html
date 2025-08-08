@@ -7,16 +7,13 @@
     <title>students assistance</title>
     <link rel="shortcut icon" href="/image/logo4.jpg" type="image/x-icon">
     <link rel="stylesheet" href="/dashboard.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <style>
         body {
             background-color: #ffffff;
         }
-
+        
         .sidebar {
             height: 100vh;
             background-color: #c7cfff71;
@@ -28,7 +25,7 @@
             transition: background-color 0.3s ease;
             position: fixed;
         }
-
+        
         .sidebar-eric {
             height: 100%;
             background-color: #c7cfff71;
@@ -38,63 +35,430 @@
             -webkit-backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
         }
-
+        
         .sidebar h5,
         .sidebar li {
             padding: 10px 20px;
         }
-
+        
         .sidebar li:hover {
             background-color: #7092ff3a;
             cursor: pointer;
         }
-
+        
         .card {
             border: none;
             border-radius: 16px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.205);
         }
-
+        
         .chart-bar {
             height: 150px;
             background: repeating-linear-gradient(to top, #ffffff6c, #e0f7ea 10px, transparent 10px, transparent 20px);
             position: relative;
         }
-
+        
         .bar {
             width: 20px;
             background-color: #61c5ff;
             position: absolute;
             bottom: 0;
         }
-
+        
         li {
             margin-top: 2%;
             height: 11%;
             list-style-type: none;
         }
-
+        
         li a {
             width: 100%;
             height: 28px;
             text-decoration: none;
         }
-
+        
         li a img {
             margin-left: -8px;
         }
-
+        
         li a p {
             margin-left: 12px;
         }
-        .section1{
+        
+        .section1 {
             margin-left: 300px;
         }
-        header{
+        
+        header {
             position: fixed;
         }
-        .sectionchat{
+        
+        .sectionchat {
             margin-top: 120px;
+        }
+        
+         :root {
+            --primary-color: #3b82f6;
+            --primary-light: #bfdbfe;
+            --primary-lighter: #e0e7ff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-lighter: #f3f4f6;
+            --ai-message-bg: #f9fafb;
+            --user-message-bg: #3b82f6;
+            --user-message-text: #ffffff;
+            --border-radius: 0.5rem;
+            --border-radius-lg: 1rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .ai-chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-color);
+        }
+        
+        .chat-header {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .app-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 300px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--primary-light);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: var(--text-light);
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--bg-lighter);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .icon-btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .icon-btn svg {
+            fill: var(--text-color);
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        .header-divider {
+            height: 1px;
+            background-color: var(--primary-light);
+            margin-top: 0.75rem;
+        }
+        
+        .chat-main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            margin-top: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .chat-sidebar {
+            width: 280px;
+            background-color: var(--bg-color);
+            border-right: 3px solid var(--primary-light);
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 0.5rem 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-header h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        .history-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .history-item {
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .history-item:hover {
+            background-color: var(--bg-lighter);
+        }
+        
+        .history-item.active {
+            background-color: var(--primary-lighter);
+        }
+        
+        .history-text {
+            margin: 0;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .history-time {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+            display: block;
+        }
+        
+        .chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .message-container {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+            margin-bottom: 5px;
+        }
+        
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            max-width: 80%;
+        }
+        
+        .message-avatar img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .message-bubble {
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-lg);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .ai-message {
+            align-self: flex-start;
+        }
+        
+        .ai-message .message-bubble {
+            background-color: var(--ai-message-bg);
+            border-top-left-radius: 0;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+        
+        .user-message .message-bubble {
+            background-color: var(--user-message-bg);
+            color: var(--user-message-text);
+            border-top-right-radius: 0;
+            background-color: #a7c3ff;
+        }
+        
+        .message-time {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+        
+        .user-message .message-time {
+            color: rgba(13, 5, 78, 0.7);
+        }
+        
+        pre {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+        
+        .user-message pre {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .message-input-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.75rem;
+            padding: 1rem;
+            background-color: var(--bg-color);
+            border-top: 3px solid var(--primary-light);
+            border-right: 3px solid var(--primary-light);
+        }
+        
+        .input-tools {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .tool-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tool-button:hover {
+            background-color: var(--bg-lighter);
+        }
+        
+        .tool-button svg {
+            fill: var(--text-light);
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        .message-input {
+            flex: 1;
+            min-height: 2.5rem;
+            max-height: 8rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--primary-light);
+            resize: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .message-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .send-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .send-button:hover {
+            background-color: #2563eb;
+        }
+        
+        .send-button svg {
+            fill: white;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+        }
+        /* Responsive adjustments */
+        
+        @media (max-width: 768px) {
+            .chat-sidebar {
+                width: 220px;
+            }
+            .search-container {
+                width: 200px;
+            }
+            .message {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
@@ -107,10 +471,8 @@
                 <!-- Sidebar -->
                 <div class="col-md-2 sidebar d-flex flex-column p-3">
                     <div class="rol d-flex " style="justify-content: space-between;">
-                        <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center"
-                            style="font-family: 'Georgia', serif;">ELEVES</h2>
-                        <a href="" class=""><img src="/svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white"
-                                width="30px" alt=""></a>
+                        <h2 class="fs-3 text-black fw-bold justify-center d-flex align-center" style="font-family: 'Georgia', serif;">ELEVES</h2>
+                        <a href="" class=""><img src="/svgs/solid/angles-left.svg" class="btn rounded-3 p-1 bg-white" width="30px" alt=""></a>
                     </div>
                     <hr class="border border-black border-1 justify-center mt-4" style="color: black; width: 98%; ">
 
@@ -173,13 +535,9 @@
                     <hr class="border border-black border-1 justify-center" style="color: black; width: 98%;">
 
                     <div class=" mt-3">
-                        <a href="studentprofile.html" id="profileeleve"
-                            class="btn d-flex p-1 align-center pt-2 rounded-4"
-                            style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
-                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px"
-                                height="40px" alt="">
-                            <p class="text-black align-center d-flex fs-5 fw-bold"
-                                style="font-family: 'Georgia', serif;">Emanuen stevie</p>
+                        <a href="studentprofile.html" id="profileeleve" class="btn d-flex p-1 align-center pt-2 rounded-4" style="text-decoration: none;background-color: rgba(135, 173, 255, 0.747);">
+                            <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="rounded-5 me-3" width="40px" height="40px" alt="">
+                            <p class="text-black align-center d-flex fs-5 fw-bold" style="font-family: 'Georgia', serif;">Emanuen stevie</p>
                         </a>
                     </div>
 
@@ -188,122 +546,166 @@
 
         </div>
 
-        <section class="w-100 section1 main">
-            <header class="row ms-1 pt-2" style="width: 100%;">
-                <div class="col d-flex " style="justify-content: space-between;">
-                    <h2>Assistance Inteligented</h2>
-                    <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25"
-                        style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
-                    <div>
-                        <a href="">
-                            <img src="/svgs/solid/circle-info.svg" width="40px" class="p-2 rounded-5"
-                                style="background-color: rgba(208, 216, 255, 0.171);" alt="">
-                        </a>
-                        <a href="" class="ms-2 me-3"><img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5"
-                                style="background-color: #bdc7ff2c;" alt=""></a>
+        <section class="ai-chat-container" style="margin-left: 300px;">
+            <header class="chat-header">
+                <div class="header-content">
+                    <h2 class="app-title fs-3">Intelligent Assistant</h2>
+                    <div class="header-controls">
+                        <div class="search-container">
+                            <input type="search" placeholder="Search..." class="search-input">
+                            <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                        </div>
+                        <div class="header-icons">
+                            <button class="icon-btn info-btn" aria-label="Information">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                </button>
+                            <button class="icon-btn notification-btn" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                    </svg>
+                </button>
+                        </div>
                     </div>
                 </div>
-                <hr class="mt-1">
-                <div class="d-flex p-2 ps-5 rounded-3"
-                    style="background-color: rgba(228, 228, 255, 0.788); margin-top: -13px; width: 99%;">
-                  </div>
-                <hr class="mt-1">
+                <div class="header-divider"></div>
             </header>
-            <div class="d-flex p-4 ms-3 sectionchat" style="height: 780px;">
-                <div class="sidebar-eric p-3 rounded-3">
-                    <div>
-                        <img src="" alt="">
-                        <img src="" alt="">
-                    </div>
-                    <div class="">
-                        <h3 class="text-center text-black fw-bold">historique</h3>
-                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
-                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">pp bg uhygb dks
-                            sjd sd h hhbppppp p</p>
-                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
-                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
-                            sjd sd h hhboo o</p>
-                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
-                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
-                            sjd sd h hhboo d </p>
-                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
-                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
-                            sjd sd h hhboo o y </p>
-                        <p class="w-100 rounded-1 p-1 ps-2 align-center d-flex text-black "
-                            style="overflow-x: hidden; white-space: nowrap; text-overflow: ellipsis; ">ppp bg uhygb dks
-                            sjd sd h hhboo oo i</p>
 
+            <div class="chat-main">
+                <aside class="chat-sidebar">
+                    <div class="sidebar-header">
+                        <h3>Chat History</h3>
                     </div>
-                </div>
-                <div class=" p-2 rounded-3" style="width: 60%;overflow-y: auto;background-color: rgba(246, 246, 255, 0.333);">
-                    <div>
-                        <img src="" alt="">
+                    <div class="history-items">
+                        <div class="history-item active">
+                            <p class="history-text">Getting started with AI assistant</p>
+                            <span class="history-time">Today, 10:30 AM</span>
+                        </div>
+                        <div class="history-item">
+                            <p class="history-text">Project brainstorming session</p>
+                            <span class="history-time">Yesterday, 3:45 PM</span>
+                        </div>
+                        <div class="history-item">
+                            <p class="history-text">Code debugging help</p>
+                            <span class="history-time">Monday, 11:20 AM</span>
+                        </div>
+                        <div class="history-item">
+                            <p class="history-text">Research about neural networks</p>
+                            <span class="history-time">Jul 12, 2023</span>
+                        </div>
+                        <div class="history-item">
+                            <p class="history-text">Content writing assistance</p>
+                            <span class="history-time">Jul 10, 2023</span>
+                        </div>
                     </div>
-                    <div class="w-100 pe-5 ps-5"
-                        style=" overflow-y: auto; height: 500px; ">
-                        <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(140, 140, 255) 2px solid; width: 40%;">
-                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
-                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
-                            pppoo oo iii uuu yy </p>
-                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
-                        
-                         <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
-                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
-                            pppoo oo iii uuu yy </p>
-                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
-                        
-                         <p class=" ms-auto d-flex p-2 ps-3 pe-3 "
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            ppppppp pp pppppp pppppp ppppppp ppp ppp ppppoo oo iii uuu yy </p>
-                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
-                            pppoo oo iii uuu yy </p>
-                        <p class=" ms-auto d-flex p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            pppoo oo iii uuu yy ms s d dbysds dybsd ysyd sdybdyds sdyy d </p>
-                            <p class=" d-flex bg-light p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
-                            pppoo oo iii uuu yy yhsdsdsd dsyd ys d s dy sdbybsdy d d </p>
-                        <p class=" ms-auto p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            pppoo oo iii uuu yy h d sd bydydsy d d u</p>
-                        <p class=" d-flex bg-light p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-right-radius: 15px;border-bottom-right-radius: 15px; width: 40%;">
-                            pppoo oo iii uuu yy hdsbyhs d </p>
-                        <p class="ms-auto d-flex p-2 ps-3 pe-3"
-                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;border-bottom-right-radius: 15px; border: rgb(219, 219, 255) 2px solid; width: 40%;">
-                            ppp ydysd sy dbsb db ds du us dbysudb soo oo iii uuu yy </p>
-                    </div>
-                    <div class="d-flex mt-5 ms-auto message-eric align-items-end gap-3 w-100">
-                        <textarea name="" id="" class="form-control border-primary rounded-4 flex-grow-1 me-2"
-                            style="height: 90px; resize: none;"
-                            placeholder="Écrire un message..."></textarea>
-                        <div class="d-flex flex-column align-items-center gap-2">
-                            <button class="btn btn-light p-2" type="button">
-                                <img src="../svgs/solid/microphone.svg" width="25px" alt="">
-                            </button>
-                            <button class="btn btn-primary p-2" type="button">
-                                <img src="../svgs/brands/telegram.svg" width="30px" alt="">
-                            </button>
+                </aside>
+
+                <div class="chat-content">
+                    <div class="message-container">
+                        <!-- AI Messages -->
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <img src="https://placehold.co/40x40/3b82f6/white?text=AI" alt="AI Avatar">
+                            </div>
+                            <div class="message-bubble">
+                                <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                                <span class="message-time">10:30 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- User Messages -->
+                        <div class="message user-message">
+
+                            <div class="message-bubble">
+                                <p>Can you help me debug this JavaScript code?</p>
+                                <span class="message-time">10:32 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <img src="https://placehold.co/40x40/3b82f6/white?text=AI" alt="AI Avatar">
+                            </div>
+                            <div class="message-bubble">
+                                <p>Of course! Please share the code snippet you're having trouble with, and I'll do my best to help you identify any issues.</p>
+                                <span class="message-time">10:32 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="message user-message">
+
+                            <div class="message-bubble">
+                                <p>Here's the code:</p>
+                                <pre><code>function calculateTotal(items) {
+  return items.reduce((total, item) => {
+    return total + item.price * item.quantity
+  })
+}</code></pre>
+                                <span class="message-time">10:33 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <img src="https://placehold.co/40x40/3b82f6/white?text=AI" alt="AI Avatar">
+                            </div>
+                            <div class="message-bubble">
+                                <p>I see the issue. Your reduce function needs an initial value (0) as the second argument. Here's the corrected version:</p>
+                                <pre><code>function calculateTotal(items) {
+  return items.reduce((total, item) => {
+    return total + item.price * item.quantity
+  }, 0) // Added initial value
+}</code></pre>
+                                <span class="message-time">10:34 AM</span>
+                            </div>
                         </div>
                     </div>
 
+                    <div class="message-input-container">
+
+                        <div class="input-tools">
+                            <button class="tool-button" aria-label="Attach file">
+                                        <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                                        </svg>
+                                    </button>
+                            <button class="tool-button" aria-label="Insert code">
+                                        <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                                        </svg>
+                                    </button>
+                        </div>
+                        <textarea class="message-input" placeholder="Type your message..." rows="1"></textarea>
+                        <button class="send-button" aria-label="Send message">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                    </svg>
+                                    </button>
+                    </div>
                 </div>
             </div>
-
-
         </section>
     </div>
-
+    <button id="quickHelpBtn" class="btn rounded-circle shadow-lg" style="position: fixed; bottom: 32px; right: 32px; width: 60px; height: 60px; z-index: 1050; display: flex; align-items: center; justify-content: center; background-color: #2b00ff80;">
+                <img src="/svgs/solid/child-reaching.svg" width="32" alt="Aide rapide">
+            </button>
+    <script>
+        // Simple animation for cards
+        document.querySelectorAll('.support-animate').forEach((el, i) => {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.style.transition = "opacity 0.7s cubic-bezier(.4,0,.2,1)";
+                el.style.opacity = 1;
+            }, 200 + i * 120);
+        });
+        // Floating help button action (example)
+        document.getElementById('quickHelpBtn').onclick = function() {
+            alert('Comment pouvons-nous vous aider ? (Démo bouton rapide)');
+        };
+    </script>
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>
 </body>
 

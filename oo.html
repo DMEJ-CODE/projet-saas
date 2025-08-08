@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Analytics Dashboard</title>
+    <link rel="shortcut icon" href="/image/logo4.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         :root {
+            --primary-color: #4e73df;
+            --secondary-color: #1cc88a;
+            --accent-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+            --light-bg: #f8f9fc;
+            --sidebar-bg: rgba(199, 207, 255, 0.44);
+            --card-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+        
+        .sidebar {
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            width: 250px;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            overflow-y: auto;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .sidebar-brand {
+            height: 4.375rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            letter-spacing: 0.05rem;
+            z-index: 1;
+        }
+        
+        .sidebar-divider {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+        
+        .sidebar-heading {
+            text-align: left;
+            padding: 0 1rem;
+            font-weight: 800;
+            font-size: 0.65rem;
+            color: #4e73df;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            color: #3a3b45;
+            border-radius: 0.35rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(112, 146, 255, 0.23);
+            color: #2e59d9;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(112, 146, 255, 0.23);
+            color: #2e59d9;
+            font-weight: 600;
+        }
+        
+        .nav-link i {
+            font-size: 0.85rem;
+            margin-right: 0.25rem;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            min-height: 100vh;
+        }
+        
+        .topbar {
+            height: 4.375rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            background-color: #fff;
+            padding: 0 1.5rem;
+        }
+        
+        .topbar #sidebarToggleTop {
+            height: 2.5rem;
+            width: 2.5rem;
+        }
+        
+        .topbar .search-bar {
+            width: 25rem;
+        }
+        
+        .topbar .topbar-divider {
+            width: 0;
+            border-right: 1px solid #e3e6f0;
+            height: calc(4.375rem - 2rem);
+            margin: auto 1rem;
+        }
+        
+        .topbar .nav-item .nav-link {
+            height: 4.375rem;
+            display: flex;
+            align-items: center;
+            padding: 0 0.75rem;
+        }
+        
+        .topbar .nav-item .nav-link .badge-counter {
+            position: absolute;
+            transform: scale(0.7);
+            transform-origin: top right;
+            right: 0.25rem;
+            margin-top: -0.25rem;
+        }
+        
+        .chart-filter-nav {
+            background-color: rgba(228, 228, 255, 0.788);
+            border-radius: 0.35rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .chart-filter-nav .nav-link {
+            padding: 0.5rem 1rem;
+            color: #4e73df;
+            font-weight: 600;
+            border-radius: 0.35rem;
+        }
+        
+        .chart-filter-nav .nav-link.active {
+            background-color: #4e73df;
+            color: white;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 0.35rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+        }
+        
+        .card-header {
+            background-color: #f8f9fc;
+            border-bottom: 1px solid #e3e6f0;
+            padding: 1rem 1.35rem;
+            font-weight: 700;
+            color: #4e73df;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 20rem;
+            width: 100%;
+        }
+        
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+        /* Custom chart colors */
+        
+        .chart-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .chart-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .chart-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .chart-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .chart-danger {
+            background-color: var(--danger-color);
+        }
+        /* Grid layout improvements */
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+        /* Larger charts */
+        
+        .chart-lg {
+            grid-column: span 2;
+            height: 400px;
+        }
+        /* KPI cards */
+        
+        .kpi-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        
+        .kpi-change.positive {
+            color: var(--secondary-color);
+        }
+        
+        .kpi-change.negative {
+            color: var(--danger-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-brand d-flex align-items-center justify-content-between">
+                <span class="text-dark fw-bold">STUDENT DASHBOARD</span>
+                <button class="btn btn-sm btn-light rounded-circle d-lg-none" id="sidebarToggle">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+            </div>
+
+            <hr class="sidebar-divider">
+
+            <div class="nav-items">
+                <div class="sidebar-heading">Academic</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentnote.html">
+                            <i class="fas fa-user-group"></i>
+                            <span>Grades</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="studentgraphic.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Performance Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentemploie.html">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentcours.html">
+                            <i class="fas fa-book-open"></i>
+                            <span>Courses</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="sidebar-heading mt-3">Activities</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentsupport.html">
+                            <i class="fas fa-file"></i>
+                            <span>Support</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentoriatation.html">
+                            <i class="fas fa-hands-holding-child"></i>
+                            <span>Orientation</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentrecompance.html">
+                            <i class="fas fa-trophy"></i>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentchalange.html">
+                            <i class="fas fa-people-carry-box"></i>
+                            <span>Challenges</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="sidebar-heading mt-3">Account</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="studentassistance.html">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Assistant</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mt-auto p-3">
+                <div class="d-flex align-items-center">
+                    <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="profile-img rounded-circle me-3" alt="Profile">
+                    <div>
+                        <div class="fw-bold">Emmanuel Stevie</div>
+                        <small class="text-muted">Grade 10</small>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand topbar mb-4 static-top shadow">
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <div class="d-flex align-items-center">
+                    <h2 class="mb-0">Performance Analytics Dashboard</h2>
+                </div>
+
+                <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <span class="badge badge-danger badge-counter">3+</span>
+                        </a>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Emmanuel Stevie</span>
+                            <img class="img-profile rounded-circle" src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" width="40">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Filter Navigation -->
+            <div class="container-fluid mb-4">
+                <ul class="nav chart-filter-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Term</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sequence</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Subjects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Competitions</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="container-fluid">
+                <!-- KPI Cards -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card kpi-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-1">Average Grade</h6>
+                                        <h2 class="kpi-value mb-0">84.5</h2>
+                                    </div>
+                                    <div class="chart-primary rounded-circle p-3">
+                                        <i class="fas fa-percent text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> 5.2% from last term
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card kpi-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-1">Rank in Class</h6>
+                                        <h2 class="kpi-value mb-0">#3</h2>
+                                    </div>
+                                    <div class="chart-secondary rounded-circle p-3">
+                                        <i class="fas fa-trophy text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> Improved 2 places
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card kpi-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-1">Reward Points</h6>
+                                        <h2 class="kpi-value mb-0">1,850</h2>
+                                    </div>
+                                    <div class="chart-warning rounded-circle p-3">
+                                        <i class="fas fa-star text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="kpi-change positive">
+                                        <i class="fas fa-arrow-up"></i> 320 this month
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card kpi-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-1">Attendance</h6>
+                                        <h2 class="kpi-value mb-0">96%</h2>
+                                    </div>
+                                    <div class="chart-accent rounded-circle p-3">
+                                        <i class="fas fa-calendar-check text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="kpi-change negative">
+                                        <i class="fas fa-arrow-down"></i> 2% from last term
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="dashboard-grid">
+                    <!-- Main Performance Chart -->
+                    <div class="card chart-lg">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Academic Performance Trend</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="performanceTrendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject Comparison Radar -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Subject Competency Radar</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="subjectRadarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grade Distribution -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Grade Distribution</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="gradeDistributionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Term Comparison -->
+                    <div class="card chart-lg">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Term Comparison</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="termComparisonChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Performance -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Quiz Performance</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="quizPerformanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Competition Results -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold">Competition Results</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="competitionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance Trend Chart (Line)
+        new Chart(document.getElementById('performanceTrendChart'), {
+            type: 'line',
+            data: {
+                labels: ['Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6'],
+                datasets: [{
+                    label: 'Your Performance',
+                    data: [75, 78, 82, 80, 85, 84],
+                    borderColor: '#4e73df',
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: 'Class Average',
+                    data: [72, 74, 76, 75, 78, 77],
+                    borderColor: '#858796',
+                    backgroundColor: 'rgba(133, 135, 150, 0.05)',
+                    fill: true,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 60,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Subject Radar Chart
+        new Chart(document.getElementById('subjectRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History'],
+                datasets: [{
+                    label: 'Your Competency',
+                    data: [85, 78, 82, 75, 88, 70],
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                    borderColor: '#4e73df',
+                    pointBackgroundColor: '#4e73df',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#4e73df'
+                }, {
+                    label: 'Class Average',
+                    data: [75, 72, 74, 70, 80, 65],
+                    backgroundColor: 'rgba(220, 220, 220, 0.2)',
+                    borderColor: 'rgba(220, 220, 220, 1)',
+                    pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(220, 220, 220, 1)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 50,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        // Grade Distribution Chart (Doughnut)
+        new Chart(document.getElementById('gradeDistributionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['A (90-100)', 'B (80-89)', 'C (70-79)', 'D (60-69)', 'F (<60)'],
+                datasets: [{
+                    data: [12, 19, 8, 3, 1],
+                    backgroundColor: [
+                        '#1cc88a',
+                        '#36b9cc',
+                        '#f6c23e',
+                        '#e74a3b',
+                        '#858796'
+                    ],
+                    hoverBackgroundColor: [
+                        '#17a673',
+                        '#2c9faf',
+                        '#dda20a',
+                        '#be2617',
+                        '#60616f'
+                    ],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+
+        // Term Comparison Chart (Bar)
+        new Chart(document.getElementById('termComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Geography'],
+                datasets: [{
+                    label: 'Current Term',
+                    backgroundColor: '#4e73df',
+                    hoverBackgroundColor: '#2e59d9',
+                    data: [85, 78, 82, 75, 88, 70, 80]
+                }, {
+                    label: 'Previous Term',
+                    backgroundColor: '#858796',
+                    hoverBackgroundColor: '#60616f',
+                    data: [80, 72, 78, 70, 85, 65, 75]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        min: 50,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Quiz Performance Chart (Line)
+        new Chart(document.getElementById('quizPerformanceChart'), {
+            type: 'line',
+            data: {
+                labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4', 'Quiz 5', 'Quiz 6'],
+                datasets: [{
+                    label: 'Your Scores',
+                    data: [85, 78, 90, 82, 88, 92],
+                    borderColor: '#1cc88a',
+                    backgroundColor: 'rgba(28, 200, 138, 0.05)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 70,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Competition Chart (Bar)
+        new Chart(document.getElementById('competitionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Math Olympiad', 'Science Fair', 'Debate', 'Coding', 'Art'],
+                datasets: [{
+                    label: 'Your Position',
+                    backgroundColor: [
+                        '#4e73df',
+                        '#1cc88a',
+                        '#36b9cc',
+                        '#f6c23e',
+                        '#e74a3b'
+                    ],
+                    data: [3, 1, 2, 5, 4],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        reverse: true,
+                        min: 1,
+                        max: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+
+        // Toggle sidebar on mobile from topbar
+        document.getElementById('sidebarToggleTop').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+    </script>
+</body>
+
+</html>
