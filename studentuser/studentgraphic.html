@@ -97,13 +97,13 @@
         }
         
         .card {
-            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
+            box-shadow: rgb(224, 224, 224) 2px 1px 25px;
         }
         
         .card:hover {
-            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
-            margin-top: -8px;
-            transition-duration: 1.5s;
+            box-shadow: rgb(138, 138, 138) 2px 1px 25px;
+            margin-top: -6px;
+            transition-duration: 1s;
         }
         
         .card-eric canvas {
@@ -158,7 +158,7 @@
             z-index: 1030;
         }
         
-        .chart-primary {
+        chart-primary {
             background-color: var(--primary-color);
         }
         
@@ -190,7 +190,6 @@
         .chart-lg {
             grid-column: span 2;
             height: 500px;
-            box-shadow: rgb(187, 187, 187) 2px 1px 25px;
         }
         /* KPI cards */
         
@@ -198,7 +197,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 150px;
         }
         
         .kpi-value {
@@ -212,11 +210,6 @@
         
         .kpi-change.negative {
             color: var(--danger-color);
-        }
-        
-        h6 {
-            font-size: 18px;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -290,12 +283,7 @@
                             <p>Asistance Inteligente</p>
                         </a>
                     </li>
-                    <li class="rounded-3 list-unstyled" style="height: 45px; ">
-                        <a href="" class="text-black d-flex">
-                            <img src="/svgs/brands/whmcs.svg" width="20px" alt="">
-                            <p>Parametre</p>
-                        </a>
-                    </li>
+
                     <hr class="border border-black border-1 justify-center" style="color: black; width: 98%;">
 
                     <div class=" mt-3">
@@ -310,111 +298,124 @@
 
         </div>
 
-        <section class="w-100 main-content main">
-            <header class="row ms-1 pt-2 main-header-fixed" style="width: 100%;">
-                <div class="col d-flex " style="justify-content: space-between;">
-                    <h2>Graphique Devolution</h2>
-                    <input type="search" placeholder="Recherche" class="rounded-pill ps-3 ms-5 w-25" style="height: 37px; border: rgb(0, 153, 255) solid 2px;">
-                    <div>
-                        <a href="">
-                            <img src="/svgs/solid/circle-info.svg" width="40px" class="p-2 rounded-5" style="background-color: rgba(208, 216, 255, 0.171);" alt="">
-                        </a>
-                        <a href="" class="ms-2 me-3"><img src="/svgs/regular/bell.svg" width="37p" class="p-2 rounded-5" style="background-color: #bdc7ff2c;" alt=""></a>
+        <div class="main-content ">
+            <!-- Topbar -->
+            <div class=" topbar mb-4 shadow">
+                <header class="fixed-top ps-3 p-3" style="margin-left: 300px; padding: 0;;">
+                    <div class="d-flex height-100">
+                        <div class="d-flex align-items-center">
+                            <h2 class="mb-0">Aalyse de performance</h2>
+                        </div>
+                        <ul class="nav chart-filter-nav rounded-3">
+                            <li class=" nav-item ">
+                                <a class="nav-link active " href="# ">Overview</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="# ">Term</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="# ">Sequence</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="# ">Subjects</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="# ">Competitions</a>
+                            </li>
+                        </ul>
+
                     </div>
-                </div>
-                <hr class="mt-1">
-                <div class="d-flex p-2 ps-5 rounded-3" style="background-color: rgba(228, 228, 255, 0.788); margin-top: -13px; width: 99%;">
-                    <a href="#" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 ms-4 btn-eric text-black fw-bold text-decoration-none btn ">General</a>
-                    <a href="#" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 btn ms-4 btn-eric fw-bold text-black text-decoration-none ">Trimestrielle</a>
-                    <a href="#" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 btn btn-eric ms-4 text-black fw-bold text-decoration-none ">Sequence</a>
-                    <a href="#" style="background-color: rgba(132, 160, 258, 0.345); " class="rounded-pill ps-3 pe-3 btn ms-4 btn-eric fw-bold text-black text-decoration-none ">Matiere</a>
-                </div>
-                <hr class="mt-1">
-            </header>
+                    <hr>
 
-            <div class=" bg-light w-100 fixed " style="margin-top:130px; overflow-y: auto;">
-                <div class="container-fluid">
+                </header>
+
+
+
+
+
+                <!-- Dashboard Content -->
+                <div class="container-fluid " style="margin-top: 100px; ">
                     <!-- KPI Cards -->
-                    <div class="row mb-4 p-5">
+                    <div class="row mb-4 ">
                         <div class="col-xl-3 col-md-6 mb-4 ">
-                            <div class="card kpi-card h-100 rounded-4">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
+                            <div class="card kpi-card h-100 ">
+                                <div class="card-body ">
+                                    <div class="d-flex justify-content-between align-items-center ">
                                         <div>
-                                            <h6 class="text-uppercase mb-1 text-primary">Average Grade</h6>
-                                            <h2 class="kpi-value mb-0">84.5</h2>
+                                            <h6 class="text-uppercase mb-1 ">Average Grade</h6>
+                                            <h2 class="kpi-value mb-0 ">84.5</h2>
                                         </div>
-                                        <div class="chart-primary rounded-circle p-3">
-                                            <i class="fas fa-percent text-white"></i>
+                                        <div class="chart-primary rounded-circle p-3 ">
+                                            <i class="fas fa-percent text-white "></i>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> 5.2% from last term
-                                    </span>
+                                    <div class="mt-2 ">
+                                        <span class="kpi-change positive ">
+                                            <i class="fas fa-arrow-up "></i> 5.2% from last term
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card kpi-card h-100 rounded-4">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-xl-3 col-md-6 mb-4 ">
+                            <div class="card kpi-card h-100 ">
+                                <div class="card-body ">
+                                    <div class="d-flex justify-content-between align-items-center ">
                                         <div>
-                                            <h6 class="text-uppercase mb-1 text-primary">Rank in Class</h6>
-                                            <h2 class="kpi-value mb-0">#3</h2>
+                                            <h6 class="text-uppercase mb-1 ">Rank in Class</h6>
+                                            <h2 class="kpi-value mb-0 ">#3</h2>
                                         </div>
-                                        <div class="chart-secondary rounded-circle p-3">
-                                            <i class="fas fa-trophy text-white"></i>
+                                        <div class="chart-secondary rounded-circle p-3 ">
+                                            <i class="fas fa-trophy text-white "></i>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> Improved 2 places
-                                    </span>
+                                    <div class="mt-2 ">
+                                        <span class="kpi-change positive ">
+                                            <i class="fas fa-arrow-up "></i> Improved 2 places
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card kpi-card h-100 rounded-4">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-xl-3 col-md-6 mb-4 ">
+                            <div class="card kpi-card h-100 ">
+                                <div class="card-body ">
+                                    <div class="d-flex justify-content-between align-items-center ">
                                         <div>
                                             <h6 class="text-uppercase mb-1 ">Reward Points</h6>
-                                            <h2 class="kpi-value mb-0">1,850</h2>
+                                            <h2 class="kpi-value mb-0 ">1,850</h2>
                                         </div>
-                                        <div class="chart-warning rounded-circle p-3">
-                                            <i class="fas fa-star text-white"></i>
+                                        <div class="chart-warning rounded-circle p-3 ">
+                                            <i class="fas fa-star text-white "></i>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> 320 this month
-                                    </span>
+                                    <div class="mt-2 ">
+                                        <span class="kpi-change positive ">
+                                            <i class="fas fa-arrow-up "></i> 320 this month
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card kpi-card h-100 rounded-4">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-xl-3 col-md-6 mb-4 ">
+                            <div class="card kpi-card h-100 ">
+                                <div class="card-body ">
+                                    <div class="d-flex justify-content-between align-items-center ">
                                         <div>
-                                            <h6 class="text-uppercase mb-1  fw">Attendance</h6>
-                                            <h2 class="kpi-value mb-0">96%</h2>
+                                            <h6 class="text-uppercase mb-1 ">Attendance</h6>
+                                            <h2 class="kpi-value mb-0 ">96%</h2>
                                         </div>
-                                        <div class="chart-accent rounded-circle p-3">
-                                            <i class="fas fa-calendar-check text-white"></i>
+                                        <div class="chart-accent rounded-circle p-3 ">
+                                            <i class="fas fa-calendar-check text-white "></i>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <span class="kpi-change negative">
-                                        <i class="fas fa-arrow-down"></i> 2% from last term
-                                    </span>
+                                    <div class="mt-2 ">
+                                        <span class="kpi-change negative ">
+                                            <i class="fas fa-arrow-down "></i> 2% from last term
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -422,11 +423,11 @@
                     </div>
 
                     <!-- Charts Grid -->
-                    <div class="dashboard-grid" style=" margin-top: -40px;">
+                    <div class="dashboard-grid ">
                         <!-- Main Performance Chart -->
-                        <div class="card chart-lg rounded-4 ">
+                        <div class="card chart-lg ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Academic Performance Trend</h6>
+                                <h6 class="m-0 font-weight-bold ">Academic Performance Trend</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -436,9 +437,9 @@
                         </div>
 
                         <!-- Subject Comparison Radar -->
-                        <div class="card rounded-4 ">
+                        <div class="card ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Subject Competency Radar</h6>
+                                <h6 class="m-0 font-weight-bold ">Subject Competency Radar</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -448,9 +449,9 @@
                         </div>
 
                         <!-- Grade Distribution -->
-                        <div class="card rounded-4 ">
+                        <div class="card ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Grade Distribution</h6>
+                                <h6 class="m-0 font-weight-bold ">Grade Distribution</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -460,9 +461,9 @@
                         </div>
 
                         <!-- Term Comparison -->
-                        <div class="card chart-lg rounded-4 ">
+                        <div class="card chart-lg ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Term Comparison</h6>
+                                <h6 class="m-0 font-weight-bold ">Term Comparison</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -472,9 +473,9 @@
                         </div>
 
                         <!-- Quiz Performance -->
-                        <div class="card rounded-4 ">
+                        <div class="card ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Quiz Performance</h6>
+                                <h6 class="m-0 font-weight-bold ">Quiz Performance</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -484,9 +485,9 @@
                         </div>
 
                         <!-- Competition Results -->
-                        <div class="card rounded-4 ">
+                        <div class="card ">
                             <div class="card-header ">
-                                <h6 class="m-0 fw-bold ">Competition Results</h6>
+                                <h6 class="m-0 font-weight-bold ">Competition Results</h6>
                             </div>
                             <div class="card-body ">
                                 <div class="chart-container ">
@@ -497,9 +498,7 @@
                     </div>
                 </div>
             </div>
-
-
-        </section>
+        </div>
     </div>
 
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js "></script>

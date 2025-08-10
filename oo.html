@@ -1,498 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Performance Analytics Dashboard</title>
-    <link rel="shortcut icon" href="/image/logo4.jpg" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriétaire Dashboard - Gestion Scolaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-         :root {
-            --primary-color: #4e73df;
-            --secondary-color: #1cc88a;
-            --accent-color: #36b9cc;
-            --warning-color: #f6c23e;
-            --danger-color: #e74a3b;
-            --light-bg: #f8f9fc;
-            --sidebar-bg: rgba(199, 207, 255, 0.44);
-            --card-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-        }
-        
-        body {
-            background-color: var(--light-bg);
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-        }
-        
-        .sidebar {
-            height: 100vh;
-            background-color: var(--sidebar-bg);
-            width: 250px;
-            padding: 1rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1030;
-            overflow-y: auto;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-        
-        .sidebar-brand {
-            height: 4.375rem;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 800;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            letter-spacing: 0.05rem;
-            z-index: 1;
-        }
-        
-        .sidebar-divider {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            margin: 1rem 0;
-        }
-        
-        .sidebar-heading {
-            text-align: left;
-            padding: 0 1rem;
-            font-weight: 800;
-            font-size: 0.65rem;
-            color: #4e73df;
-        }
-        
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-link {
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            color: #3a3b45;
-            border-radius: 0.35rem;
-            transition: all 0.3s;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(112, 146, 255, 0.23);
-            color: #2e59d9;
-        }
-        
-        .nav-link.active {
-            background-color: rgba(112, 146, 255, 0.23);
-            color: #2e59d9;
-            font-weight: 600;
-        }
-        
-        .nav-link i {
-            font-size: 0.85rem;
-            margin-right: 0.25rem;
-        }
-        
-        .main-content {
-            margin-left: 250px;
-            width: calc(100% - 250px);
-            min-height: 100vh;
-        }
-        
-        .topbar {
-            height: 4.375rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-            background-color: #fff;
-            padding: 0 1.5rem;
-        }
-        
-        .topbar #sidebarToggleTop {
-            height: 2.5rem;
-            width: 2.5rem;
-        }
-        
-        .topbar .search-bar {
-            width: 25rem;
-        }
-        
-        .topbar .topbar-divider {
-            width: 0;
-            border-right: 1px solid #e3e6f0;
-            height: calc(4.375rem - 2rem);
-            margin: auto 1rem;
-        }
-        
-        .topbar .nav-item .nav-link {
-            height: 4.375rem;
-            display: flex;
-            align-items: center;
-            padding: 0 0.75rem;
-        }
-        
-        .topbar .nav-item .nav-link .badge-counter {
-            position: absolute;
-            transform: scale(0.7);
-            transform-origin: top right;
-            right: 0.25rem;
-            margin-top: -0.25rem;
-        }
-        
-        .chart-filter-nav {
-            background-color: rgba(228, 228, 255, 0.788);
-            border-radius: 0.35rem;
-            padding: 0.5rem 1rem;
-        }
-        
-        .chart-filter-nav .nav-link {
-            padding: 0.5rem 1rem;
-            color: #4e73df;
-            font-weight: 600;
-            border-radius: 0.35rem;
-        }
-        
-        .chart-filter-nav .nav-link.active {
-            background-color: #4e73df;
-            color: white;
-        }
-        
-        .card {
-            border: none;
-            border-radius: 0.35rem;
-            box-shadow: var(--card-shadow);
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
-        }
-        
-        .card-header {
-            background-color: #f8f9fc;
-            border-bottom: 1px solid #e3e6f0;
-            padding: 1rem 1.35rem;
-            font-weight: 700;
-            color: #4e73df;
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 20rem;
-            width: 100%;
-        }
-        
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-            }
-        }
-        /* Custom chart colors */
-        
-        .chart-primary {
-            background-color: var(--primary-color);
-        }
-        
-        .chart-secondary {
-            background-color: var(--secondary-color);
-        }
-        
-        .chart-accent {
-            background-color: var(--accent-color);
-        }
-        
-        .chart-warning {
-            background-color: var(--warning-color);
-        }
-        
-        .chart-danger {
-            background-color: var(--danger-color);
-        }
-        /* Grid layout improvements */
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-        /* Larger charts */
-        
-        .chart-lg {
-            grid-column: span 2;
-            height: 400px;
-        }
-        /* KPI cards */
-        
-        .kpi-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .kpi-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
-        
-        .kpi-change.positive {
-            color: var(--secondary-color);
-        }
-        
-        .kpi-change.negative {
-            color: var(--danger-color);
-        }
-    </style>
 </head>
+<style></style>
 
 <body>
-    <div class="d-flex">
+    <div class="wrapper">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="sidebar-brand d-flex align-items-center justify-content-between">
-                <span class="text-dark fw-bold">STUDENT DASHBOARD</span>
-                <button class="btn btn-sm btn-light rounded-circle d-lg-none" id="sidebarToggle">
-                    <i class="fas fa-angle-left"></i>
-                </button>
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h3>Gestion Scolaire</h3>
+                <strong>GS</strong>
             </div>
 
-            <hr class="sidebar-divider">
-
-            <div class="nav-items">
-                <div class="sidebar-heading">Academic</div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentnote.html">
-                            <i class="fas fa-user-group"></i>
-                            <span>Grades</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="studentgraphic.html">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Performance Analytics</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentemploie.html">
-                            <i class="fas fa-calendar-days"></i>
-                            <span>Schedule</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentcours.html">
-                            <i class="fas fa-book-open"></i>
-                            <span>Courses</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="sidebar-heading mt-3">Activities</div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentsupport.html">
-                            <i class="fas fa-file"></i>
-                            <span>Support</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentoriatation.html">
-                            <i class="fas fa-hands-holding-child"></i>
-                            <span>Orientation</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentrecompance.html">
-                            <i class="fas fa-trophy"></i>
-                            <span>Rewards</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentchalange.html">
-                            <i class="fas fa-people-carry-box"></i>
-                            <span>Challenges</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="sidebar-heading mt-3">Account</div>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="studentassistance.html">
-                            <i class="fas fa-robot"></i>
-                            <span>AI Assistant</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mt-auto p-3">
-                <div class="d-flex align-items-center">
-                    <img src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" class="profile-img rounded-circle me-3" alt="Profile">
-                    <div>
-                        <div class="fw-bold">Emmanuel Stevie</div>
-                        <small class="text-muted">Grade 10</small>
-                    </div>
-                </div>
-            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-speedometer2"></i> Tableau de bord
+                    </a>
+                </li>
+                <li>
+                    <a href="#financeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-cash-stack"></i> Finances
+                    </a>
+                    <ul class="collapse list-unstyled" id="financeSubmenu">
+                        <li>
+                            <a href="#">Revenus</a>
+                        </li>
+                        <li>
+                            <a href="#">Dépenses</a>
+                        </li>
+                        <li>
+                            <a href="#">Bilan financier</a>
+                        </li>
+                        <li>
+                            <a href="#">Prévisions</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#performanceSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-graph-up"></i> Performance
+                    </a>
+                    <ul class="collapse list-unstyled" id="performanceSubmenu">
+                        <li>
+                            <a href="#">Indicateurs clés</a>
+                        </li>
+                        <li>
+                            <a href="#">Comparaison</a>
+                        </li>
+                        <li>
+                            <a href="#">Tendances</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#staffSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-people-fill"></i> Personnel
+                    </a>
+                    <ul class="collapse list-unstyled" id="staffSubmenu">
+                        <li>
+                            <a href="#">Gestion du personnel</a>
+                        </li>
+                        <li>
+                            <a href="#">Performances</a>
+                        </li>
+                        <li>
+                            <a href="#">Salaires</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#reportsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-file-earmark-text"></i> Rapports
+                    </a>
+                    <ul class="collapse list-unstyled" id="reportsSubmenu">
+                        <li>
+                            <a href="#">Mensuels</a>
+                        </li>
+                        <li>
+                            <a href="#">Trimestriels</a>
+                        </li>
+                        <li>
+                            <a href="#">Annuels</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#settingsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-gear"></i> Paramètres
+                    </a>
+                    <ul class="collapse list-unstyled" id="settingsSubmenu">
+                        <li>
+                            <a href="#">École</a>
+                        </li>
+                        <li>
+                            <a href="#">Système</a>
+                        </li>
+                        <li>
+                            <a href="#">Sécurité</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand topbar mb-4 static-top shadow">
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
 
-                <div class="d-flex align-items-center">
-                    <h2 class="mb-0">Performance Analytics Dashboard</h2>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell-fill"></i>
+                                    <span class="badge bg-danger">2</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Paiement en retard</a></li>
+                                    <li><a class="dropdown-item" href="#">Rapport mensuel prêt</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Voir toutes les notifications</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle"></i> Propriétaire
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                <ul class="navbar-nav ml-auto">
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Emmanuel Stevie</span>
-                            <img class="img-profile rounded-circle" src="/image/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" width="40">
-                        </a>
-                    </li>
-                </ul>
             </nav>
 
-            <!-- Filter Navigation -->
-            <div class="container-fluid mb-4">
-                <ul class="nav chart-filter-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Overview</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Term</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sequence</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Subjects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Competitions</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Dashboard Content -->
+            <!-- Main Content -->
             <div class="container-fluid">
-                <!-- KPI Cards -->
                 <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h2>Tableau de Bord Propriétaire</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="row">
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card kpi-card h-100">
+                        <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="text-uppercase mb-1">Average Grade</h6>
-                                        <h2 class="kpi-value mb-0">84.5</h2>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Revenus (Mois)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">€45,000</div>
                                     </div>
-                                    <div class="chart-primary rounded-circle p-3">
-                                        <i class="fas fa-percent text-white"></i>
+                                    <div class="col-auto">
+                                        <i class="bi bi-cash fa-2x text-gray-300"></i>
                                     </div>
-                                </div>
-                                <div class="mt-2">
-                                    <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> 5.2% from last term
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card kpi-card h-100">
+                        <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="text-uppercase mb-1">Rank in Class</h6>
-                                        <h2 class="kpi-value mb-0">#3</h2>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Dépenses (Mois)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">€28,500</div>
                                     </div>
-                                    <div class="chart-secondary rounded-circle p-3">
-                                        <i class="fas fa-trophy text-white"></i>
+                                    <div class="col-auto">
+                                        <i class="bi bi-credit-card fa-2x text-gray-300"></i>
                                     </div>
-                                </div>
-                                <div class="mt-2">
-                                    <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> Improved 2 places
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card kpi-card h-100">
+                        <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="text-uppercase mb-1">Reward Points</h6>
-                                        <h2 class="kpi-value mb-0">1,850</h2>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Bénéfice net</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">€16,500</div>
                                     </div>
-                                    <div class="chart-warning rounded-circle p-3">
-                                        <i class="fas fa-star text-white"></i>
+                                    <div class="col-auto">
+                                        <i class="bi bi-graph-up fa-2x text-gray-300"></i>
                                     </div>
-                                </div>
-                                <div class="mt-2">
-                                    <span class="kpi-change positive">
-                                        <i class="fas fa-arrow-up"></i> 320 this month
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card kpi-card h-100">
+                        <div class="card border-left-warning shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="text-uppercase mb-1">Attendance</h6>
-                                        <h2 class="kpi-value mb-0">96%</h2>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Taux de remplissage</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">92%</div>
                                     </div>
-                                    <div class="chart-accent rounded-circle p-3">
-                                        <i class="fas fa-calendar-check text-white"></i>
+                                    <div class="col-auto">
+                                        <i class="bi bi-percent fa-2x text-gray-300"></i>
                                     </div>
                                 </div>
-                                <div class="mt-2">
-                                    <span class="kpi-change negative">
-                                        <i class="fas fa-arrow-down"></i> 2% from last term
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Tables -->
+                <div class="row">
+                    <!-- Financial Performance Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Performance Financière</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Exporter</a></li>
+                                        <li><a class="dropdown-item" href="#">Imprimer</a></li>
+                                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="financialChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Sources -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Sources de revenus</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Exporter</a></li>
+                                        <li><a class="dropdown-item" href="#">Imprimer</a></li>
+                                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="revenueChart"></canvas>
+                                </div>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="bi bi-circle-fill text-primary"></i> Frais de scolarité
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="bi bi-circle-fill text-success"></i> Activités
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="bi bi-circle-fill text-info"></i> Dons
                                     </span>
                                 </div>
                             </div>
@@ -500,76 +306,94 @@
                     </div>
                 </div>
 
-                <!-- Charts Grid -->
-                <div class="dashboard-grid">
-                    <!-- Main Performance Chart -->
-                    <div class="card chart-lg">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Academic Performance Trend</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="performanceTrendChart"></canvas>
+                <!-- Recent Transactions and School Comparison -->
+                <div class="row">
+                    <!-- Recent Transactions -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Transactions récentes</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Description</th>
+                                                <th>Montant</th>
+                                                <th>Statut</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-10-15</td>
+                                                <td>Frais de scolarité - Jean Dupont</td>
+                                                <td>€450</td>
+                                                <td><span class="badge bg-success">Payé</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-14</td>
+                                                <td>Salaire - Professeur Martin</td>
+                                                <td>€2,100</td>
+                                                <td><span class="badge bg-success">Payé</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-12</td>
+                                                <td>Achat matériel scolaire</td>
+                                                <td>€1,250</td>
+                                                <td><span class="badge bg-warning">En attente</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-10</td>
+                                                <td>Frais de scolarité - Marie Lambert</td>
+                                                <td>€450</td>
+                                                <td><span class="badge bg-danger">En retard</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-08</td>
+                                                <td>Loyer bâtiment</td>
+                                                <td>€5,000</td>
+                                                <td><span class="badge bg-success">Payé</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="#" class="btn btn-primary btn-block mt-3">Voir toutes les transactions</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Subject Comparison Radar -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Subject Competency Radar</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="subjectRadarChart"></canvas>
+                    <!-- School Comparison -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Comparaison avec l'année dernière</h6>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Grade Distribution -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Grade Distribution</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="gradeDistributionChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Term Comparison -->
-                    <div class="card chart-lg">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Term Comparison</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="termComparisonChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quiz Performance -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Quiz Performance</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="quizPerformanceChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Competition Results -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold">Competition Results</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="competitionChart"></canvas>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="comparisonChart"></canvas>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card bg-primary text-white mb-3">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Étudiants</h6>
+                                                    <p class="card-text">+15% par rapport à l'année dernière</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card bg-success text-white mb-3">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Revenus</h6>
+                                                    <p class="card-text">+22% par rapport à l'année dernière</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -578,227 +402,135 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Gestion Scolaire Pro 2023</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="js/owner.js"></script>
     <script>
-        // Performance Trend Chart (Line)
-        new Chart(document.getElementById('performanceTrendChart'), {
-            type: 'line',
-            data: {
-                labels: ['Term 1', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6'],
-                datasets: [{
-                    label: 'Your Performance',
-                    data: [75, 78, 82, 80, 85, 84],
-                    borderColor: '#4e73df',
-                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                    fill: true,
-                    tension: 0.3
-                }, {
-                    label: 'Class Average',
-                    data: [72, 74, 76, 75, 78, 77],
-                    borderColor: '#858796',
-                    backgroundColor: 'rgba(133, 135, 150, 0.05)',
-                    fill: true,
-                    tension: 0.3,
-                    borderDash: [5, 5]
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                plugins: {
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 60,
-                        max: 100
-                    }
-                }
-            }
-        });
-
-        // Subject Radar Chart
-        new Chart(document.getElementById('subjectRadarChart'), {
-            type: 'radar',
-            data: {
-                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History'],
-                datasets: [{
-                    label: 'Your Competency',
-                    data: [85, 78, 82, 75, 88, 70],
-                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
-                    borderColor: '#4e73df',
-                    pointBackgroundColor: '#4e73df',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#4e73df'
-                }, {
-                    label: 'Class Average',
-                    data: [75, 72, 74, 70, 80, 65],
-                    backgroundColor: 'rgba(220, 220, 220, 0.2)',
-                    borderColor: 'rgba(220, 220, 220, 1)',
-                    pointBackgroundColor: 'rgba(220, 220, 220, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(220, 220, 220, 1)'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: {
-                            display: true
-                        },
-                        suggestedMin: 50,
-                        suggestedMax: 100
-                    }
-                }
-            }
-        });
-
-        // Grade Distribution Chart (Doughnut)
-        new Chart(document.getElementById('gradeDistributionChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['A (90-100)', 'B (80-89)', 'C (70-79)', 'D (60-69)', 'F (<60)'],
-                datasets: [{
-                    data: [12, 19, 8, 3, 1],
-                    backgroundColor: [
-                        '#1cc88a',
-                        '#36b9cc',
-                        '#f6c23e',
-                        '#e74a3b',
-                        '#858796'
-                    ],
-                    hoverBackgroundColor: [
-                        '#17a673',
-                        '#2c9faf',
-                        '#dda20a',
-                        '#be2617',
-                        '#60616f'
-                    ],
-                    hoverBorderColor: "rgba(234, 236, 244, 1)",
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                cutout: '70%',
-                plugins: {
-                    legend: {
-                        position: 'right'
-                    }
-                }
-            }
-        });
-
-        // Term Comparison Chart (Bar)
-        new Chart(document.getElementById('termComparisonChart'), {
+        // Financial Performance Chart
+        var ctx = document.getElementById('financialChart').getContext('2d');
+        var financialChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Geography'],
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
                 datasets: [{
-                    label: 'Current Term',
-                    backgroundColor: '#4e73df',
-                    hoverBackgroundColor: '#2e59d9',
-                    data: [85, 78, 82, 75, 88, 70, 80]
+                    label: 'Revenus',
+                    data: [42000, 43000, 44000, 45000, 46000, 47000, 48000, 49000, 50000, 51000, 52000, 53000],
+                    backgroundColor: 'rgba(78, 115, 223, 0.8)',
+                    borderColor: 'rgba(78, 115, 223, 1)',
+                    borderWidth: 1
                 }, {
-                    label: 'Previous Term',
-                    backgroundColor: '#858796',
-                    hoverBackgroundColor: '#60616f',
-                    data: [80, 72, 78, 70, 85, 65, 75]
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: false,
-                        min: 50,
-                        max: 100
-                    }
-                }
-            }
-        });
-
-        // Quiz Performance Chart (Line)
-        new Chart(document.getElementById('quizPerformanceChart'), {
-            type: 'line',
-            data: {
-                labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4', 'Quiz 5', 'Quiz 6'],
-                datasets: [{
-                    label: 'Your Scores',
-                    data: [85, 78, 90, 82, 88, 92],
-                    borderColor: '#1cc88a',
-                    backgroundColor: 'rgba(28, 200, 138, 0.05)',
-                    fill: true,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 70,
-                        max: 100
-                    }
-                }
-            }
-        });
-
-        // Competition Chart (Bar)
-        new Chart(document.getElementById('competitionChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Math Olympiad', 'Science Fair', 'Debate', 'Coding', 'Art'],
-                datasets: [{
-                    label: 'Your Position',
-                    backgroundColor: [
-                        '#4e73df',
-                        '#1cc88a',
-                        '#36b9cc',
-                        '#f6c23e',
-                        '#e74a3b'
-                    ],
-                    data: [3, 1, 2, 5, 4],
+                    label: 'Dépenses',
+                    data: [28000, 29000, 30000, 31000, 32000, 33000, 34000, 35000, 36000, 37000, 38000, 39000],
+                    backgroundColor: 'rgba(231, 74, 59, 0.8)',
+                    borderColor: 'rgba(231, 74, 59, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
-                indexAxis: 'y',
                 maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        reverse: true,
-                        min: 1,
-                        max: 10
-                    }
-                },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
         });
 
-        // Toggle sidebar on mobile
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
-            document.querySelector('.main-content').classList.toggle('expanded');
+        // Revenue Sources Chart
+        var ctx2 = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Frais de scolarité', 'Activités', 'Dons', 'Autres'],
+                datasets: [{
+                    data: [75, 15, 5, 5],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a'],
+                    hoverBorderColor: 'rgba(234, 236, 244, 1)',
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                cutout: '70%',
+            }
         });
 
-        // Toggle sidebar on mobile from topbar
-        document.getElementById('sidebarToggleTop').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
-            document.querySelector('.main-content').classList.toggle('expanded');
+        // School Comparison Chart
+        var ctx3 = document.getElementById('comparisonChart').getContext('2d');
+        var comparisonChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
+                datasets: [{
+                    label: 'Cette année',
+                    data: [42000, 43000, 44000, 45000, 46000, 47000, 48000, 49000, 50000, 51000, 52000, 53000],
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    borderColor: 'rgba(78, 115, 223, 1)',
+                    pointRadius: 3,
+                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
+                    pointBorderColor: 'rgba(78, 115, 223, 1)',
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
+                    pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    tension: 0.3
+                }, {
+                    label: 'Année dernière',
+                    data: [35000, 36000, 37000, 38000, 39000, 40000, 41000, 42000, 43000, 44000, 45000, 46000],
+                    backgroundColor: 'rgba(231, 74, 59, 0.05)',
+                    borderColor: 'rgba(231, 74, 59, 1)',
+                    pointRadius: 3,
+                    pointBackgroundColor: 'rgba(231, 74, 59, 1)',
+                    pointBorderColor: 'rgba(231, 74, 59, 1)',
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: 'rgba(231, 74, 59, 1)',
+                    pointHoverBorderColor: 'rgba(231, 74, 59, 1)',
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
         });
     </script>
 </body>
